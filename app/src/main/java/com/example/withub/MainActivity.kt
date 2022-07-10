@@ -1,7 +1,6 @@
 package com.example.withub
 
 
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle
@@ -22,7 +21,6 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavigationView : BottomNavigationView
-    var myDatas: Deferred<MyData>? = null
     var backKeyPressedTime : Long= 0
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
-            Log.d("tlwkr","ttt")
             if (!isMyServiceRunning(ForegroundService::class.java)){
                 val serviceIntent = Intent(this,ForegroundService::class.java)
                 applicationContext.startForegroundService(serviceIntent)
@@ -73,16 +70,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-//            super.onBackPressed()
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis()
-                Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show()
-                return
-            }
+                if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                    backKeyPressedTime = System.currentTimeMillis()
+                    Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                    return
+                }
 
-            if (System.currentTimeMillis() <= backKeyPressedTime + 2000){
-                finish()
-            }
+                if (System.currentTimeMillis() <= backKeyPressedTime + 2000){
+                    finish()
+                }
             }
     }
 
@@ -135,9 +131,9 @@ class MainActivity : AppCompatActivity() {
                 ft.show(myInfo)
             }
         }
+
         //마무리
         ft.commitAllowingStateLoss()
-        //ft.commit()
     }
 
     fun isMyServiceRunning(serviceClass: Class<*>): Boolean {

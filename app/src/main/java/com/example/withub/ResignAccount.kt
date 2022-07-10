@@ -69,7 +69,7 @@ class ResignAccount : AppCompatActivity() {
             resignBtn.setOnClickListener{
                 builder.setTitle("정말로 탈퇴하시겠습니까?")
                 builder.setMessage("탈퇴하시면 계정을 복구할 수 없습니다.")
-                builder.setPositiveButton("확인") { p0, p1 ->
+                builder.setPositiveButton("확인") { _, _ ->
                     resignApi()
                 }
                 builder.setNegativeButton("취소", null)

@@ -32,9 +32,6 @@ class LoginActivity: AppCompatActivity() {
 //        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
-        val default =AppCompatDelegate.getDefaultNightMode()
-//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
-//            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
             AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES
 

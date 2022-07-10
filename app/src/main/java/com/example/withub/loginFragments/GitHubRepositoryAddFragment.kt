@@ -87,7 +87,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         githubNickNameChangeBtn.setOnClickListener{
             if (repositoryList.isNotEmpty()) {
                 builder.setMessage("닉네임을 변경하면 추가한 레포지토리가 전부 삭제됩니다.")
-                builder.setPositiveButton("확인") { p0, p1 ->
+                builder.setPositiveButton("확인") { _, _ ->
                     repositoryList.clear()
                     adapter.deleteAllItem()
                     githubOwnerText.text = null

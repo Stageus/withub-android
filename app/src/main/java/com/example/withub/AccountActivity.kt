@@ -52,7 +52,7 @@ class AccountActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.account_activity_logout_view).setOnClickListener {
             builder.setTitle("로그아웃 하시겠습니까?")
             builder.setMessage("다시 로그인 할 시 GitHub 토큰을 재발급 받으셔야합니다.")
-            builder.setPositiveButton("확인") { p0, p1 ->
+            builder.setPositiveButton("확인") { _, _ ->
                 deleteToken()
             }
             builder.setNegativeButton("취소", null)

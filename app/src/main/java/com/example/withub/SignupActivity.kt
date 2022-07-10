@@ -25,6 +25,7 @@ class SignupActivity: AppCompatActivity() {
     lateinit var repositoryList : List<UserRepoData>
     val retrofit = RetrofitClient.initRetrofit()
     val fragmentManager = supportFragmentManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_activity)
