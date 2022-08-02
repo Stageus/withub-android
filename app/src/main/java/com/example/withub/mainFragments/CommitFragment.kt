@@ -59,4 +59,9 @@ class CommitFragment : Fragment() {
             Toast.makeText(mainActivity, "업데이트 완료", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
