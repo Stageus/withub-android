@@ -117,6 +117,6 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/drawer_activity_recycler_view_item" />
+            tools:listitem="@layout/recycler_view_item_drawer" />
     </LinearLayout>
 </LinearLayout>

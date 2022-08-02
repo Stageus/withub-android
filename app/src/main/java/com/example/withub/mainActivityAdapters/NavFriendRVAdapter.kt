@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -23,7 +22,7 @@ class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendNa
     val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavFriendRVAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.drawer_activity_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recycler_view_item_drawer, parent, false)
 
         return Holder(view)
     }

@@ -34,7 +34,7 @@ class CommitRVAdapter(val context : Context, var list : List<CommitData>) : Recy
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommitRVAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.commit_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.`recycler_view_item_commit.xml`, parent, false)
         return Holder(view)
     }
 

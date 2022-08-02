@@ -1,7 +1,6 @@
 package com.example.withub.mainFragments.mainFragmentAdapters
 
 import android.annotation.SuppressLint
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,7 @@ class ExpandableRVAdapter( var rankingDataList: MutableList<ArrayList<RankData>>
     var visibilityList = arrayListOf<Boolean>(false,false,false,false)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.ranking_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item_ranking, parent, false)
         return Holder(view)
     }
 

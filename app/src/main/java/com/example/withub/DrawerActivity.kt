@@ -8,7 +8,6 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,7 +21,7 @@ class DrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(R.layout.drawer_activity)
+        setContentView(R.layout.activity_drawer)
         val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
         val myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
 

@@ -8,22 +8,24 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.withub.*
+import com.example.withub.databinding.FragmentMyInfoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MyInfoFragment: Fragment() {
-    val myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
+    private var _binding : FragmentMyInfoBinding? = null
+    private val binding get() = _binding!!
     lateinit var mainActivity : MainActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.myinfo_fragment, container, false)
+        _binding = FragmentMyInfoBinding.inflate(inflater,container,false)
+        val view: View = binding.root
         mainActivity = activity as MainActivity
         return view
     }
@@ -31,31 +33,33 @@ class MyInfoFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val nickName = view.findViewById<TextView>(R.id.my_info_nickname)
-        val myImg = view.findViewById<ImageView>(R.id.my_info_img_view)
+        val myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             val job = async(Dispatchers.IO){myDataApi.getMyNickname(MyApp.prefs.accountToken!!)}
-            nickName.text = job.await().nickname
+            binding.myInfoNickname.text = job.await().nickname
             Glide.with(mainActivity)
                 .load(job.await().avatar_url.toUri())
                 .error(R.mipmap.ic_launcher)
                 .fallback(R.mipmap.ic_launcher)
                 .circleCrop()
-                .into(myImg)
+                .into(binding.myInfoImgView)
         }
 
-        val changeGitHubInfoView = view.findViewById<LinearLayout>(R.id.my_info_change_github_info)
-        val changeAccountView = view.findViewById<LinearLayout>(R.id.my_info_account)
         //깃허브 정보 변경
-        changeGitHubInfoView.setOnClickListener {
+        binding.myInfoChangeGithubInfo.setOnClickListener {
             val intent = Intent(mainActivity, GitHubInfoChangeActivity::class.java)
             startActivity(intent)
         }
 
         //계정 정보 변경
-        changeAccountView.setOnClickListener {
+        binding.myInfoAccount.setOnClickListener {
             val intent = Intent(mainActivity, AccountActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
