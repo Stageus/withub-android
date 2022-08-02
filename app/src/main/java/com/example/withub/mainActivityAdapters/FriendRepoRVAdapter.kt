@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.R
 import com.example.withub.Repositories
@@ -31,7 +30,7 @@ class FriendRepoRVAdapter(var context: Context,var repoList: List<Repositories>)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.friend_activity_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recycler_view_item_friend, parent, false)
         return Holder(view)
     }
 

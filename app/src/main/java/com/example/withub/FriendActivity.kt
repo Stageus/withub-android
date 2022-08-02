@@ -3,16 +3,15 @@ package com.example.withub
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import com.example.withub.databinding.ActivityFriendBinding
 import com.example.withub.mainActivityAdapters.FriendRepoRVAdapter
-import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -21,152 +20,132 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
-import com.robinhood.ticker.TickerView
 import kotlinx.coroutines.*
 
 class FriendActivity : AppCompatActivity() {
 
-    lateinit var lineChart: LineChart
-
-    var friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
-    val handler = CoroutineExceptionHandler{_,exception->
-        Log.d("error",exception.toString())
-    }
+    private lateinit var binding : ActivityFriendBinding
+    private val friendApi: FriendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(R.layout.friend_activity)
+        binding = ActivityFriendBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         //친구 이름 가져오기
+        val handler = CoroutineExceptionHandler{_,exception->
+            Log.d("error",exception.toString())
+        }
         val friendNickName = intent.getStringExtra("friendNickName")!!
         val myNickName = intent.getStringExtra("myNickName")!!
         val myAvatar = intent.getStringExtra("myAvatar")!!
         val friendAvatar = intent.getStringExtra("friendAvatar")!!
+
         //뒤로가기
-        val backBtn = findViewById<ImageButton>(R.id.friend_activity_back_btn)
-        backBtn.setOnClickListener {
+        binding.friendActivityBackBtn.setOnClickListener {
             finish()
         }
 
-        //닉네임 설정
-        val toolbarNickNameView = findViewById<TextView>(R.id.friend_activity_toolbar_textview)
-        toolbarNickNameView.text = getString(R.string.neam,friendNickName)
-
-        //롤링 텍스트 설정
-        val friendTodayCommitView = findViewById<TickerView>(R.id.friend_activity_friend_today_commit)
-        
         //커밋 승자 뷰
-        val myCrown = findViewById<ImageView>(R.id.friend_activity_left_crown)
-        val friendCrown = findViewById<ImageView>(R.id.friend_activity_right_crown)
+        glide(myAvatar,binding.friendActivityUserImage)
+        glide(friendAvatar,binding.friendActivityFriendImage)
 
-        val myImageView = findViewById<ImageView>(R.id.friend_activity_user_Image)
-        val friendImageView = findViewById<ImageView>(R.id.friend_activity_friend_Image)
-        glide(myAvatar,myImageView)
-        glide(friendAvatar,friendImageView)
         //닉네임설정
-        val myName = findViewById<TextView>(R.id.friend_activity_user_name)
-        val friendName = findViewById<TextView>(R.id.friend_activity_friend_name)
-        friendName.text = friendNickName
-        myName.text = myNickName
-        //횟수
-        val myMonthCommitNumView = findViewById<TextView>(R.id.friend_activity_user_month_commit_num)
-        val friendMontCommitNumView = findViewById<TextView>(R.id.friend_activity_friend_month_commit_num)
-        //커밋 잔디
-        val commitGrassImgView = findViewById<ImageView>(R.id.friend_commit_grass_img_view)
-        val commitVsText = findViewById<TextView>(R.id.friend_activity_vs)
-        val repositoryTitle = findViewById<TextView>(R.id.friend_activity_repository_title)
-        repositoryTitle.text = getString(R.string.friend_repository_list,friendNickName)
+        binding.friendActivityToolbarTextview.text = getString(R.string.neam,friendNickName)
+        binding.friendActivityFriendName.text = friendNickName
+        binding.friendActivityUserName.text = myNickName
+
+        binding.friendActivityRepositoryTitle.text = getString(R.string.friend_repository_list,friendNickName)
+
         //그래프 설정
-        lineChart  = findViewById(R.id.friend_line_chart)
-        val horizontalScrollView = findViewById<HorizontalScrollView>(R.id.friend_horizontal_scroll)
-        horizontalScrollView.post { horizontalScrollView.scrollTo(lineChart.width,0) }
+        binding.friendHorizontalScroll.post { binding.friendHorizontalScroll.scrollTo(binding.friendLineChart.width,0) }
 
         CoroutineScope(Dispatchers.Main).launch(handler) {
             val callFriendDataApi = withContext(Dispatchers.IO) {
                 friendApi.getFriendInfo(MyApp.prefs.accountToken!!,friendNickName)
             }
 
-            friendTodayCommitView.text = callFriendDataApi.friend_daily.toString()//오늘 커밋
+            binding.friendActivityFriendTodayCommit.text = callFriendDataApi.friend_daily.toString()//오늘 커밋
 
             //친구 커밋
             initLineChart(callFriendDataApi.thirty_commit)//차트 x축
             setDataToLineChart(callFriendDataApi.thirty_commit)//차트 커밋수 조절
-            getGrassImg(commitGrassImgView,callFriendDataApi.committer) //잔디 불러오기
+            getGrassImg(binding.friendCommitGrassImgView,callFriendDataApi.committer) //잔디 불러오기
 
             //승자
-            myMonthCommitNumView.text = callFriendDataApi.my_month_total.toString()+"회"
-            friendMontCommitNumView.text = callFriendDataApi.friend_month_total.toString()+"회"
+            binding.friendActivityUserMonthCommitNum.text = callFriendDataApi.my_month_total.toString()+"회"
+            binding.friendActivityFriendMonthCommitNum.text = callFriendDataApi.friend_month_total.toString()+"회"
 
             if(callFriendDataApi.friend_month_total>callFriendDataApi.my_month_total){
                 //친구승
-                myCrown.visibility = View.INVISIBLE
-                friendCrown.visibility = View.VISIBLE
-                commitVsText.text = "<"
+                binding.friendActivityLeftCrown.visibility = View.INVISIBLE
+                binding.friendActivityRightCrown.visibility = View.VISIBLE
+                binding.friendActivityVs.text = "<"
 
             }else if(callFriendDataApi.friend_month_total<callFriendDataApi.my_month_total){
                 //나 승
-                myCrown.visibility = View.VISIBLE
-                friendCrown.visibility = View.INVISIBLE
-                commitVsText.text = ">"
+                binding.friendActivityLeftCrown.visibility = View.VISIBLE
+                binding.friendActivityRightCrown.visibility = View.INVISIBLE
+                binding.friendActivityVs.text = ">"
             }else if(callFriendDataApi.friend_month_total==callFriendDataApi.my_month_total){
                 //같을 때
-                myCrown.visibility = View.GONE
-                friendCrown.visibility = View.GONE
-                commitVsText.text = "="
+                binding.friendActivityLeftCrown.visibility = View.GONE
+                binding.friendActivityRightCrown.visibility = View.GONE
+                binding.friendActivityVs.text = "="
             }
 
             //레포 설정
-            val repoRVAdapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
-            val recyclerView = findViewById<RecyclerView>(R.id.friend_activity_recycler_view)
-            recyclerView.adapter = repoRVAdapter
-            recyclerView.setHasFixedSize(true)
+            binding.friendActivityRecyclerView.apply {
+                adapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
+                setHasFixedSize(true)
+            }
         }
 
-        val swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.friend_swipe_refresh_layout)
-        swipeRefreshLayout.setOnRefreshListener {
+        binding.friendSwipeRefreshLayout.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch(handler) {
                 val callFriendDataApi = withContext(Dispatchers.IO) { friendApi.getFriendInfo(MyApp.prefs.accountToken!!,friendNickName) }
-                friendTodayCommitView.text = callFriendDataApi.friend_daily.toString()//오늘 커밋
+                binding.friendActivityFriendTodayCommit.text = callFriendDataApi.friend_daily.toString()//오늘 커밋
 
                 //친구 커밋
                 initLineChart(callFriendDataApi.thirty_commit)//차트 x축
                 setDataToLineChart(callFriendDataApi.thirty_commit)//차트 커밋수 조절
-                getGrassImg(commitGrassImgView,callFriendDataApi.committer) //잔디 불러오기
+                getGrassImg(binding.friendCommitGrassImgView,callFriendDataApi.committer) //잔디 불러오기
 
                 //승자
-                myMonthCommitNumView.text = callFriendDataApi.my_month_total.toString()
-                friendMontCommitNumView.text = callFriendDataApi.friend_month_total.toString()
+                binding.friendActivityUserMonthCommitNum.text = callFriendDataApi.my_month_total.toString()
+                binding.friendActivityFriendMonthCommitNum.text = callFriendDataApi.friend_month_total.toString()
 
                 if(callFriendDataApi.friend_month_total>callFriendDataApi.my_month_total){
                     //친구승
-                    myCrown.visibility = View.INVISIBLE
-                    friendCrown.visibility = View.VISIBLE
+                    binding.friendActivityLeftCrown.visibility = View.INVISIBLE
+                    binding.friendActivityRightCrown.visibility = View.VISIBLE
 
                 }else if(callFriendDataApi.friend_month_total<callFriendDataApi.my_month_total){
                     //나 승
-                    myCrown.visibility = View.VISIBLE
-                    friendCrown.visibility = View.INVISIBLE
+                    binding.friendActivityLeftCrown.visibility = View.VISIBLE
+                    binding.friendActivityRightCrown.visibility = View.INVISIBLE
                 }else if(callFriendDataApi.friend_month_total==callFriendDataApi.my_month_total){
                     //같을 때
-                    myCrown.visibility = View.GONE
-                    friendCrown.visibility = View.GONE
+                    binding.friendActivityLeftCrown.visibility = View.GONE
+                    binding.friendActivityRightCrown.visibility = View.GONE
                 }
 
                 //레포 설정
-                val repoRVAdapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
-                val recyclerView = findViewById<RecyclerView>(R.id.friend_activity_recycler_view)
                 val decoration = DividerItemDecoration(applicationContext, RecyclerView.VERTICAL)
-                recyclerView.adapter = repoRVAdapter
-                recyclerView.setHasFixedSize(true)
-                recyclerView.addItemDecoration(decoration)
-                swipeRefreshLayout.isRefreshing = false
+                binding.friendActivityRecyclerView.apply {
+                    adapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
+                    setHasFixedSize(true)
+                    addItemDecoration(decoration)
+                }
+                binding.friendSwipeRefreshLayout.isRefreshing = false
                 Toast.makeText(this@FriendActivity,"업데이트 완료", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun initLineChart(dateList : List<MyThirtyCommits>){
-        lineChart.run {
+    private fun initLineChart(dateList : List<MyThirtyCommits>){
+        binding.friendLineChart.apply {
             axisRight.isEnabled = false
             legend.isEnabled = false
             axisLeft.isEnabled  = false
@@ -176,9 +155,9 @@ class FriendActivity : AppCompatActivity() {
             isScaleYEnabled = false
             isScaleXEnabled = false
         }
-        val xAxis: XAxis = lineChart.xAxis
+        val xAxis: XAxis = binding.friendLineChart.xAxis
         // to draw label on xAxis
-        xAxis.run {
+        xAxis.apply {
             setDrawGridLines(false)
             setDrawAxisLine(true)
             setDrawLabels(true)
@@ -191,20 +170,21 @@ class FriendActivity : AppCompatActivity() {
         }
     }
 
-    inner class XAxisCustomFormatter( val xAxisData : ArrayList<String>) : ValueFormatter(){
+    inner class XAxisCustomFormatter(private val xAxisData : ArrayList<String>) : ValueFormatter(){
 
         override fun getFormattedValue(value: Float): String {
             return xAxisData[(value).toInt()]
         }
     }
-    fun setDataToLineChart(commitList : List<MyThirtyCommits>){
+    private fun setDataToLineChart(commitList : List<MyThirtyCommits>){
 
         val entries: ArrayList<Entry> = ArrayList()
         for (i in commitList.indices){
             entries.add(Entry(i.toFloat(),commitList[i].commit.toFloat()))
         }
+
         val lineDataSet = LineDataSet(entries,"entries")
-        lineDataSet.run {
+        lineDataSet.apply {
             color = resources.getColor(R.color.point_color,null)
             circleRadius = 5f
             lineWidth = 3f
@@ -216,13 +196,15 @@ class FriendActivity : AppCompatActivity() {
             valueFormatter = DefaultValueFormatter(0)
             valueTextSize = 10f
         }
-        val data = LineData(lineDataSet)
-        lineChart.data = data
-        lineChart.notifyDataSetChanged()
-        lineChart.invalidate()
+
+        binding.friendLineChart.apply {
+            data = LineData(lineDataSet)
+            notifyDataSetChanged()
+            invalidate()
+        }
     }
 
-    fun addXAisle(dateList : List<MyThirtyCommits>) : ArrayList<String>{
+    private fun addXAisle(dateList : List<MyThirtyCommits>) : ArrayList<String>{
         val dataTextList = ArrayList<String>()
         for (i in dateList.indices){
             val textSize = dateList[i].date.length
@@ -233,12 +215,11 @@ class FriendActivity : AppCompatActivity() {
                 dataTextList.add(dateText)
             }
         }
-
         return dataTextList
     }
 
 
-    fun getGrassImg(imageView: ImageView,url : String){
+    private fun getGrassImg(imageView: ImageView, url : String){
         GlideToVectorYou.init()
             .with(this)
             .withListener(object : GlideToVectorYouListener{
@@ -250,7 +231,7 @@ class FriendActivity : AppCompatActivity() {
             .load("https://ghchart.rshah.org/219138/$url".toUri(),imageView)
     }
 
-    fun glide(url: String,imageView: ImageView){
+    private fun glide(url: String, imageView: ImageView){
         Glide.with(this@FriendActivity)
             .load(url.toUri())
             .error(R.mipmap.ic_launcher)
