@@ -13,12 +13,11 @@ import com.example.withub.mainFragments.CommitFragment
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.MyInfoFragment
 import com.example.withub.mainFragments.RankingFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-private lateinit var binding: ActivityMainBinding
 
-class ActivityMainBinding: AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     var backKeyPressedTime : Long= 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

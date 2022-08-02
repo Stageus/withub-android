@@ -16,7 +16,7 @@ import kotlinx.coroutines.*
 
 
 class RankingFriendFragment : Fragment() {
-    lateinit var mainActivity: ActivityMainBinding
+    lateinit var mainActivity: MainActivity
     lateinit var recyclerView : RecyclerView
     lateinit var expandableAdapter : ExpandableRVAdapter
 
@@ -29,7 +29,7 @@ class RankingFriendFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.ranking_friend_fragment,container,false)
-        mainActivity = activity as ActivityMainBinding
+        mainActivity = activity as MainActivity
         return view
     }
 

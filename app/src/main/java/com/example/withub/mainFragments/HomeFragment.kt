@@ -15,13 +15,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.withub.*
 import com.example.withub.databinding.FragmentHomeBinding
 import com.example.withub.mainFragments.mainFragmentAdapters.HomePagerRecyclerAdapter
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -30,7 +28,6 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
-import com.robinhood.ticker.TickerView
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
@@ -38,7 +35,7 @@ class HomeFragment : Fragment(){
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var mainActivity: ActivityMainBinding
+    lateinit var mainActivity: MainActivity
 
     lateinit var job : Job
     var myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
@@ -50,7 +47,7 @@ class HomeFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         val view = binding.root
-        mainActivity = activity as ActivityMainBinding
+        mainActivity = activity as MainActivity
         if (savedInstanceState !=null){
             bannerPosition = savedInstanceState.getInt("bannerPosition")
         }

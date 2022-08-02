@@ -55,7 +55,7 @@
             android:screenOrientation="portrait" />
         <service android:name=".ForegroundService"/>
 
-        <activity android:name=".ActivityMainBinding"
+        <activity android:name=".MainActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait" />
         <activity android:name=".GitHubInfoChangeActivity"
