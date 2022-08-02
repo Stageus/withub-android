@@ -11,47 +11,52 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.withub.databinding.ActivityDrawerBinding
 import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
 import kotlinx.coroutines.*
 
 class DrawerActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityDrawerBinding
     lateinit var navFriendRVAdapter: NavFriendRVAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = ActivityDrawerBinding.inflate(layoutInflater)
+        val view = binding.root
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(R.layout.activity_drawer)
+        setContentView(view)
+
         val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
         val myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
-
+        val handler = CoroutineExceptionHandler{_,exception->
+            Log.d("error",exception.toString())
+        }
         //헤더 설정
-        val headerImgView = findViewById<ImageView>(R.id.drawer_header_img)
-        val headerNicknameView = findViewById<TextView>(R.id.drawer_header_nickname)
-        
+
         CoroutineScope(Dispatchers.Main).launch() {
             //내이름 가져오기
             val job = async(Dispatchers.IO){myDataApi.getMyNickname(MyApp.prefs.accountToken!!)}
-            headerNicknameView.text = job.await().nickname
+            binding.drawerHeaderNickname.text = job.await().nickname
             Glide.with(this@DrawerActivity)
                 .load(job.await().avatar_url.toUri())
                 .error(R.mipmap.ic_launcher)
                 .fallback(R.mipmap.ic_launcher)
                 .circleCrop()
-                .into(headerImgView)
+                .into(binding.drawerHeaderImg)
             
             //리사이클러뷰 설정
             val getFriendList = async(Dispatchers.IO) {
                 friendApi.getFriendList(MyApp.prefs.accountToken!!).friends
             }
-            val decoration = DividerItemDecoration(applicationContext, RecyclerView.VERTICAL)
-            val recyclerView = findViewById<RecyclerView>(R.id.drawer_friend_recycler_View)
-            recyclerView.addItemDecoration(decoration)
-            navFriendRVAdapter  = NavFriendRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList(), job.await())
-            recyclerView.adapter = navFriendRVAdapter
+
+            binding.drawerFriendRecyclerView.apply {
+                addItemDecoration(DividerItemDecoration(applicationContext, RecyclerView.VERTICAL))
+                adapter = NavFriendRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList(), job.await())
+            }
 
             //네비게이션 드로어 친구추가 AlterDialog
-            findViewById<ImageButton>(R.id.drawer_add_friend_button).setOnClickListener {
+            binding.drawerAddFriendButton.setOnClickListener {
                 val input = EditText(this@DrawerActivity)
                 input.hint = "닉네임"
                 input.setSingleLine()
@@ -61,9 +66,7 @@ class DrawerActivity : AppCompatActivity() {
                 params.rightMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
                 input.layoutParams = params
                 inputContainer.addView(input)
-                val handler = CoroutineExceptionHandler{_,exception->
-                    Log.d("error",exception.toString())
-                }
+
                 val dialog : AlertDialog.Builder = AlertDialog.Builder(this@DrawerActivity)
                 dialog.setTitle("친구추가")
                     .setMessage("친구의 닉네임을 입력해 주세요.")
@@ -94,13 +97,13 @@ class DrawerActivity : AppCompatActivity() {
         }
 
         //설정창
-        findViewById<ImageButton>(R.id.drawer_option_button).setOnClickListener {
+        binding.drawerOptionButton.setOnClickListener {
             val intent = Intent(this,SettingActivity::class.java)
             startActivity(intent)
         }
 
         //닫기
-        findViewById<ImageButton>(R.id.drawer_exit_button).setOnClickListener {
+        binding.drawerExitButton.setOnClickListener {
             navFriendRVAdapter.closeSwipeView()
             this.finish()
         }
