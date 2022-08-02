@@ -29,7 +29,6 @@ class SettingActivity : AppCompatActivity() {
                 OssLicensesMenuActivity.setActivityTitle(getString(R.string.opensource_licenses))
             }
         }
-
         // 개발자 정보
         findViewById<LinearLayout>(R.id.option_develop_info).let{
             it.setOnClickListener {

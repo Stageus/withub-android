@@ -14,7 +14,7 @@ import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
 import kotlinx.coroutines.*
 
 class RankingAreaFragment : Fragment() {
-    lateinit var mainActivity: MainActivity
+    lateinit var mainActivity: ActivityMainBinding
     lateinit var recyclerView : RecyclerView
     lateinit var expandableAdapter : ExpandableRVAdapter
     var commitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
@@ -26,7 +26,7 @@ class RankingAreaFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.ranking_area_fragment,container,false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as ActivityMainBinding
         return view
     }
 

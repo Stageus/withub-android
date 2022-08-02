@@ -19,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.withub.*
+import com.example.withub.databinding.FragmentHomeBinding
 import com.example.withub.mainFragments.mainFragmentAdapters.HomePagerRecyclerAdapter
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -34,13 +35,11 @@ import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
 
-    lateinit var mainActivity: MainActivity
-    lateinit var commitGrassImgView : ImageView //잔디
-    lateinit var pagerRecyclerView: ViewPager2
-    lateinit var lineChart: LineChart //라인 차트
-    lateinit var myTodayCommitTextView : TickerView
-    lateinit var friendAvgCommitView : TickerView
-    lateinit var areaAvgCommitView : TickerView
+    private var _binding : FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    lateinit var mainActivity: ActivityMainBinding
+
     lateinit var job : Job
     var myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
     var bannerPosition = (Int.MAX_VALUE/2)+1
@@ -48,9 +47,10 @@ class HomeFragment : Fragment(){
     val handler = CoroutineExceptionHandler{_,exception->
         Log.d("error",exception.toString())
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.home_fragment,container,false)
-        mainActivity = activity as MainActivity
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        val view = binding.root
+        mainActivity = activity as ActivityMainBinding
         if (savedInstanceState !=null){
             bannerPosition = savedInstanceState.getInt("bannerPosition")
         }
@@ -61,31 +61,15 @@ class HomeFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         testGitHubConnection()
         //nav버튼
-        val navButton = view.findViewById<ImageButton>(R.id.nav_button)
-        navButton.setOnClickListener {
+        binding.navButton.setOnClickListener {
             val intent = Intent(mainActivity, DrawerActivity::class.java)
             startActivity(intent)
             mainActivity.overridePendingTransition(R.anim.lefttoright_animation, R.anim.hold)
         }
 
-        //topView 설정
-        myTodayCommitTextView = view.findViewById(R.id.my_today_commit)
-
         //30일 커밋 차트
-        lineChart  = view.findViewById(R.id.line_chart)
-        val horizontalScrollView = view.findViewById<HorizontalScrollView>(R.id.horizontal_scroll)
-        horizontalScrollView.post { horizontalScrollView.scrollTo(lineChart.width,0) }
+        binding.homeHorizontalScroll.post { binding.homeHorizontalScroll.scrollTo(binding.lineChart.width,0) }
 
-        //친구 평균 뷰
-        friendAvgCommitView = view.findViewById(R.id.home_fragment_my_friend_commit_avg)
-
-        //지역 평균 뷰
-        areaAvgCommitView = view.findViewById(R.id.home_fragment_my_area_commit_avg)
-
-        //커밋 잔디
-        commitGrassImgView = view.findViewById(R.id.main_commit_grass_img_view)
-
-        //팁 뷰페이저
         //이미지 넣기
         val imgList = arrayListOf(R.drawable.view_pager1,R.drawable.view_pager2,R.drawable.view_pager3,R.drawable.view_pager4)
         //url 넣기
@@ -95,20 +79,18 @@ class HomeFragment : Fragment(){
             "https://www.youtube.com/watch?v=kp5CEADyTFs",
             "https://www.youtube.com/watch?v=Ru_bHWAqdSM")
 
-        val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(mainActivity,Glide.with(this),imgList,urlList)
-        pagerRecyclerView = view.findViewById(R.id.main_view_pager)
-        pagerRecyclerView.adapter = homePagerRecyclerAdapter
-        pagerRecyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        pagerRecyclerView.setCurrentItem(bannerPosition,false)
-        val totalBannerNumView = view.findViewById<TextView>(R.id.total_banner_text_view)
-        totalBannerNumView.text = numBanner.toString()
-        val currentBannerNumView = view.findViewById<TextView>(R.id.current_banner_text_view)
-
-        pagerRecyclerView.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        //배너 설정
+        binding.mainViewPager.apply{
+            adapter = HomePagerRecyclerAdapter(mainActivity,Glide.with(this),imgList,urlList)
+            orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            setCurrentItem(bannerPosition,false)
+        }
+        binding.totalBannerTextView.text = numBanner.toString()
+        binding.mainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                currentBannerNumView.text = ((position%4)+1).toString()
+                binding.currentBannerTextView.text = ((position%4)+1).toString()
                 bannerPosition = position
                 Log.d("position",position.toString())
             }
@@ -126,22 +108,21 @@ class HomeFragment : Fragment(){
         })
 
         //swipeRefreshLayout
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.friend_swipe_refresh_layout)
-        swipeRefreshLayout.setOnRefreshListener {
+        binding.homeSwipeToRefresh.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch(handler) {
                 getMainData()
-                swipeRefreshLayout.isRefreshing = false
+                binding.homeSwipeToRefresh.isRefreshing = false
                 Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
             }
         }
-
+        // 데이터 가져오기
         CoroutineScope(Dispatchers.Main).launch(handler) {
             getMainData()
         }
     }
 
-    fun initLineChart(dateList : List<MyThirtyCommits>){
-        lineChart.run {
+    private fun initLineChart(dateList : List<MyThirtyCommits>){
+        binding.lineChart.apply{
             axisRight.isEnabled = false
             legend.isEnabled = false
             axisLeft.isEnabled  = false
@@ -151,9 +132,9 @@ class HomeFragment : Fragment(){
             isScaleYEnabled = false
             isScaleXEnabled = false
         }
-        val xAxis: XAxis = lineChart.xAxis
+        val xAxis: XAxis = binding.lineChart.xAxis
         // to draw label on xAxis
-        xAxis.run {
+        xAxis.apply{
             setDrawGridLines(false)
             setDrawAxisLine(true)
             setDrawLabels(true)
@@ -166,20 +147,21 @@ class HomeFragment : Fragment(){
         }
     }
 
-    inner class XAxisCustomFormatter( val xAxisData : ArrayList<String>) : ValueFormatter(){
+    inner class XAxisCustomFormatter(private val xAxisData : ArrayList<String>) : ValueFormatter(){
 
         override fun getFormattedValue(value: Float): String {
             return xAxisData[(value).toInt()]
         }
     }
-    fun setDataToLineChart(commitList : List<MyThirtyCommits>){
+
+    private fun setDataToLineChart(commitList : List<MyThirtyCommits>){
 
         val entries: ArrayList<Entry> = ArrayList()
         for (i in commitList.indices){
             entries.add(Entry(i.toFloat(),commitList[i].commit.toFloat()))
         }
         val lineDataSet = LineDataSet(entries,"entries")
-        lineDataSet.run {
+        lineDataSet.apply {
             color = resources.getColor(R.color.point_color,null)
             circleRadius = 5f
             lineWidth = 3f
@@ -191,13 +173,14 @@ class HomeFragment : Fragment(){
             valueFormatter = DefaultValueFormatter(0)
             valueTextSize = 10f
         }
-        val data = LineData(lineDataSet)
-        lineChart.data = data
-        lineChart.notifyDataSetChanged()
-        lineChart.invalidate()
+        binding.lineChart.apply {
+            data = LineData(lineDataSet)
+            notifyDataSetChanged()
+            invalidate()
+        }
     }
 
-    fun addXAisle(dateList : List<MyThirtyCommits>) : ArrayList<String>{
+    private fun addXAisle(dateList : List<MyThirtyCommits>) : ArrayList<String>{
         val dataTextList = ArrayList<String>()
         for (i in dateList.indices){
             val textSize = dateList[i].date.length
@@ -208,21 +191,20 @@ class HomeFragment : Fragment(){
                 dataTextList.add(dateText)
             }
         }
-
         return dataTextList
     }
 
     fun scrollJobCreate(){
         job = lifecycleScope.launchWhenResumed {
             delay(4000)
-            pagerRecyclerView.setCurrentItemWithDuration(++bannerPosition,500)
+            binding.mainViewPager.setCurrentItemWithDuration(++bannerPosition,500)
         }
     }
 
-    fun ViewPager2.setCurrentItemWithDuration(
+    private fun ViewPager2.setCurrentItemWithDuration(
         item : Int, duration: Long,
         interpolator: TimeInterpolator = AccelerateDecelerateInterpolator(),
-        pagePxWidth: Int = pagerRecyclerView.width
+        pagePxWidth: Int = binding.mainViewPager.width
     ){
         val pxToDrag: Int = pagePxWidth * (item - currentItem)
         val animator = ValueAnimator.ofInt(0, pxToDrag)
@@ -258,28 +240,28 @@ class HomeFragment : Fragment(){
     }
 
 
-    suspend fun getMainData(){
+    private suspend fun getMainData(){
 
         withContext(CoroutineScope(Dispatchers.Main).coroutineContext + handler) {
             //호출
             val callMainDataApi = withContext(Dispatchers.IO){
                 myDataApi.getMyData(MyApp.prefs.accountToken!!)
             }
-            myTodayCommitTextView.text = callMainDataApi.daily_commit.toString()//오늘 커밋
+            binding.myTodayCommit.text = callMainDataApi.daily_commit.toString()//오늘 커밋
             if (callMainDataApi.friend_avg == -1f){
-                friendAvgCommitView.text = "친구추가해주세요"
+                binding.homeFragmentMyFriendCommitAvg.text = "친구추가해주세요"
             }else{
-                friendAvgCommitView.text = callMainDataApi.friend_avg.toString()
+                binding.homeFragmentMyFriendCommitAvg.text = callMainDataApi.friend_avg.toString()
             }
             //친구 커밋
-            areaAvgCommitView.text = callMainDataApi.area_avg.toString()//지역 커밋
+            binding.homeFragmentMyAreaCommitAvg.text = callMainDataApi.area_avg.toString()//지역 커밋
             initLineChart(callMainDataApi.thirty_commit)//차트 x축
             setDataToLineChart(callMainDataApi.thirty_commit)//차트 커밋수 조절
             getGrassImg(callMainDataApi.committer) //잔디 불러오기
         }
     }
     
-    fun getGrassImg(url : String){
+    private fun getGrassImg(url : String){
         GlideToVectorYou.init()
             .with(mainActivity)
             .withListener(object : GlideToVectorYouListener{
@@ -289,7 +271,7 @@ class HomeFragment : Fragment(){
                 override fun onResourceReady() {
                 }
             })
-            .load("https://ghchart.rshah.org/219138/$url".toUri(),commitGrassImgView)
+            .load("https://ghchart.rshah.org/219138/$url".toUri(),binding.mainCommitGrassImgView)
     }
 
     fun testGitHubConnection(){
@@ -326,5 +308,10 @@ class HomeFragment : Fragment(){
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("bannerPosition",bannerPosition)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

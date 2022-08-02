@@ -113,7 +113,7 @@ class LoginActivity: AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }else{
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        val intent = Intent(this@LoginActivity, ActivityMainBinding::class.java)
                         startActivity(intent)
                         finish()
                     }
@@ -140,7 +140,7 @@ class LoginActivity: AppCompatActivity() {
             override fun onResponse(call: Call<TokenCheckData>, response: Response<TokenCheckData>) {
                 Log.d("message","${response.body()!!.success}")
                 if (response.body()!!.success) {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent = Intent(this@LoginActivity, ActivityMainBinding::class.java)
                     startActivity(intent)
                     finish()
                 }

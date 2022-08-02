@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id "com.google.android.gms.oss-licenses-plugin"
+    id 'kotlin-kapt'
 }
 
 Properties properties = new Properties()
@@ -37,10 +37,21 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     //바인딩 뷰
     viewBinding {
         enabled = true
     }
+
+    //데이터 바인딩
+    dataBinding {
+        enabled = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {

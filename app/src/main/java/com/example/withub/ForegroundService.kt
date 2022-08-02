@@ -98,7 +98,7 @@ class ForegroundService : Service() {
         builder.setContentTitle("WITHUB")
         builder.setContentText("Withub 실행중")
         builder.color = Color.RED
-        val notificationIntent = Intent(this,MainActivity::class.java)
+        val notificationIntent = Intent(this,ActivityMainBinding::class.java)
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, FLAG_IMMUTABLE)
         builder.setContentIntent(pendingIntent) // 알림 클릭 시 이동

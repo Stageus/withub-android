@@ -17,14 +17,14 @@ import kotlinx.coroutines.*
 class CommitFragment : Fragment() {
 
     var commitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
-    lateinit var mainActivity : MainActivity
+    lateinit var mainActivity : ActivityMainBinding
     lateinit var adapter : CommitRVAdapter
     val handler = CoroutineExceptionHandler{_,exception->
         Log.d("error",exception.toString())
     }
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.commit_fragment,container,false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as ActivityMainBinding
 
         return view
     }

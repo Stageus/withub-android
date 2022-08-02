@@ -20,11 +20,11 @@ import kotlinx.coroutines.launch
 
 class MyInfoFragment: Fragment() {
     val myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
-    lateinit var mainActivity : MainActivity
+    lateinit var mainActivity : ActivityMainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.myinfo_fragment, container, false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as ActivityMainBinding
         return view
     }
 

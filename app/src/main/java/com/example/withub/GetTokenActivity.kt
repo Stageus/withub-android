@@ -38,7 +38,7 @@ class GetTokenActivity : AppCompatActivity() {
 
         confirmBtn.setOnClickListener{
             MyApp.prefs.githubToken = "token "+githubTokenText.text.toString()
-            val intent = Intent(applicationContext, MainActivity::class.java)
+            val intent = Intent(applicationContext, ActivityMainBinding::class.java)
             startActivity(intent)
         }
 

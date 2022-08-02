@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.withub.mainFragments.mainFragmentAdapters.GithubInfoChangeRVAdapter
 import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.githubinfo_change_activity.*
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Response
@@ -40,7 +39,6 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
         val backBtn = findViewById<ImageButton>(R.id.back_btn_info_change)
 
         adapter = GithubInfoChangeRVAdapter(repositoryList,changeBtn)
-        recyclerViewGithubInfoChange.adapter = adapter
 
         backBtn.setOnClickListener{
             finish()

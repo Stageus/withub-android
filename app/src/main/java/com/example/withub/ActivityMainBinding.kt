@@ -1,32 +1,33 @@
 package com.example.withub
 
-
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.withub.databinding.ActivityMainBinding
 import com.example.withub.mainFragments.CommitFragment
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.MyInfoFragment
 import com.example.withub.mainFragments.RankingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.*
 
+private lateinit var binding: ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class ActivityMainBinding: AppCompatActivity() {
 
-    lateinit var bottomNavigationView : BottomNavigationView
     var backKeyPressedTime : Long= 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setTheme(R.style.Theme_WITHUB)
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(R.layout.main_activity)
+        setContentView(view)
 
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
@@ -38,8 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //바텀 네비게이션 뷰
-        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-        bottomNavigationView.setOnItemSelectedListener { item->
+        binding.bottomNavView.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.tap_home ->{
                     setFragment(HomeFragment(),"Home")
