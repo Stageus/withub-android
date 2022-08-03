@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.withub.databinding.ActivityDrawerBinding
-import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
+import com.example.withub.mainActivityAdapters.DrawerFriendListRVAdapter
 import kotlinx.coroutines.*
 
 class DrawerActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityDrawerBinding
-    lateinit var navFriendRVAdapter: NavFriendRVAdapter
+    lateinit var navFriendRVAdapter: DrawerFriendListRVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,7 @@ class DrawerActivity : AppCompatActivity() {
 
             binding.drawerFriendRecyclerView.apply {
                 addItemDecoration(DividerItemDecoration(applicationContext, RecyclerView.VERTICAL))
-                adapter = NavFriendRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList(), job.await())
+                adapter = DrawerFriendListRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList(), job.await())
             }
 
             //네비게이션 드로어 친구추가 AlterDialog

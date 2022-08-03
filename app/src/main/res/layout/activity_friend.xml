@@ -347,7 +347,7 @@
                     android:elevation="10dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/recycler_view_item_friend"
+                    tools:listitem="@layout/recycler_view_item_friend_repo_list"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:0.5"
                     app:layout_constraintEnd_toEndOf="parent"

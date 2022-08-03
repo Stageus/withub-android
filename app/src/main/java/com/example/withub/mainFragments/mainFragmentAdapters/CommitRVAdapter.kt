@@ -41,5 +41,4 @@ class CommitRVAdapter(val context : Context, var list : List<CommitData>) : Recy
         notifyDataSetChanged()
     }
 
-
 }

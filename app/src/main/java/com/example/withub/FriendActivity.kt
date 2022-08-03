@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.withub.databinding.ActivityFriendBinding
-import com.example.withub.mainActivityAdapters.FriendRepoRVAdapter
+import com.example.withub.mainActivityAdapters.FriendRepoListRVAdapter
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -97,7 +97,7 @@ class FriendActivity : AppCompatActivity() {
 
             //레포 설정
             binding.friendActivityRecyclerView.apply {
-                adapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
+                adapter = FriendRepoListRVAdapter(this@FriendActivity,callFriendDataApi.repository)
                 setHasFixedSize(true)
             }
         }
@@ -134,7 +134,7 @@ class FriendActivity : AppCompatActivity() {
                 //레포 설정
                 val decoration = DividerItemDecoration(applicationContext, RecyclerView.VERTICAL)
                 binding.friendActivityRecyclerView.apply {
-                    adapter = FriendRepoRVAdapter(this@FriendActivity,callFriendDataApi.repository)
+                    adapter = FriendRepoListRVAdapter(this@FriendActivity,callFriendDataApi.repository)
                     setHasFixedSize(true)
                     addItemDecoration(decoration)
                 }

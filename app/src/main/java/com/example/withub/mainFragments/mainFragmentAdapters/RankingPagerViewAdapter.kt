@@ -13,9 +13,7 @@ class RankingPagerViewAdapter (fragmentActivity: FragmentActivity) : FragmentSta
         RankingAreaFragment()
     )
 
-    override fun getItemCount(): Int {
-        return fragments.size
-    }
+    override fun getItemCount(): Int = fragments.size
 
     override fun createFragment(position: Int): Fragment {
         return fragments[position]

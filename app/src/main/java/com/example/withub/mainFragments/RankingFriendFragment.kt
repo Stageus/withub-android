@@ -50,7 +50,7 @@ class RankingFriendFragment : Fragment() {
         binding.rankingFriendSwipeRefreshLayout.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch(handler) {
                 getRankingData()
-                expandableAdapter.refresh(rankingDataList.toMutableList())
+                expandableAdapter.refresh(rankingDataList)
                 binding.rankingFriendSwipeRefreshLayout.isRefreshing = false
                 Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
             }
