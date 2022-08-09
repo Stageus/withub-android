@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_color"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/textView3"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/background_color"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:background="@color/point_color"
-        android:fontFamily="@font/nanum_square_round_bold"
-        android:gravity="center"
-        android:text="@string/ranking"
-        android:textColor="@color/white"
-        android:textSize="27sp"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/ranking_tapLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/point_color"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:tabRippleColor="@android:color/transparent"
-        app:tabIndicatorColor="@color/white"
-        app:tabIndicatorFullWidth="false"
-        app:tabSelectedTextColor="@color/toolbar_text_color"
-        app:tabTextAppearance="@style/rankingTabTextSize"
-        app:tabTextColor="@color/rankingTap_unselected_color"
-        app:tabIndicatorHeight="3dp"/>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:background="@color/point_color"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:gravity="center"
+            android:text="@string/ranking"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/ranking_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ranking_tapLayout" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/ranking_tapLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/point_color"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorFullWidth="false"
+            app:tabSelectedTextColor="@color/toolbar_text_color"
+            app:tabTextAppearance="@style/rankingTabTextSize"
+            app:tabTextColor="@color/rankingTap_unselected_color"
+            app:tabIndicatorHeight="3dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ranking_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ranking_tapLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

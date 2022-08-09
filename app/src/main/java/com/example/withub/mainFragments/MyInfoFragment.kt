@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.withub.*
@@ -19,12 +20,11 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class MyInfoFragment: Fragment() {
-    private var _binding : FragmentMyInfoBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentMyInfoBinding
     lateinit var mainActivity : MainActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentMyInfoBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_info,container,false)
         val view: View = binding.root
         mainActivity = activity as MainActivity
         return view
@@ -56,10 +56,5 @@ class MyInfoFragment: Fragment() {
             val intent = Intent(mainActivity, AccountActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

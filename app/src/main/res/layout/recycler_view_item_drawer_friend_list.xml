@@ -1,53 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.swipe.SwipeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_view"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@color/white">
-    <LinearLayout
-        android:id="@+id/swipe_bottom_wrapper"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/point_color"
-        android:gravity="end">
-        <TextView
-            android:id="@+id/swipe_delete_button"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:text="삭제"
-            android:textSize="15sp"
-            android:textColor="@color/white"
-            android:background="@drawable/point_background_ripple_effect"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/nav_friend_recycler_item"
-        android:background="@drawable/background_ripple_effect"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipe_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/nav_friend_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center"
-            android:layout_weight="0.15" />
+        android:layout_height="50dp"
+        android:background="@color/white">
 
-        <TextView
-            android:id="@+id/nav_friend_name"
+        <LinearLayout
+            android:id="@+id/swipe_bottom_wrapper"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:text="@string/help"
-            android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:layout_weight="0.8"
-            android:layout_gravity="center" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/point_color"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/swipe_delete_button"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="삭제"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:background="@drawable/point_background_ripple_effect" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nav_friend_recycler_item"
+            android:background="@drawable/background_ripple_effect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/nav_friend_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center"
+                android:layout_weight="0.15" />
+
+            <TextView
+                android:id="@+id/nav_friend_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="@string/help"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                android:layout_weight="0.8"
+                android:layout_gravity="center" />
+        </LinearLayout>
 
 
-</com.daimajia.swipe.SwipeLayout>
+    </com.daimajia.swipe.SwipeLayout>
+</layout>

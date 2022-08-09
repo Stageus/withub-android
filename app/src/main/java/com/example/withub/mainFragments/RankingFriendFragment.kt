@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.withub.*
 import com.example.withub.databinding.FragmentRankingFriendBinding
@@ -14,8 +15,7 @@ import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
 import kotlinx.coroutines.*
 
 class RankingFriendFragment : Fragment() {
-    private var _binding : FragmentRankingFriendBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentRankingFriendBinding
     lateinit var mainActivity: MainActivity
 
     private val commitApi: CommitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
@@ -27,7 +27,7 @@ class RankingFriendFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        _binding = FragmentRankingFriendBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ranking_friend,container,false)
         val view: View = binding.root
         mainActivity = activity as MainActivity
         return view
@@ -89,10 +89,5 @@ class RankingFriendFragment : Fragment() {
             rankingDataList.add(newMonthlyRankData)
             rankingDataList.add(newContinuousRankData)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

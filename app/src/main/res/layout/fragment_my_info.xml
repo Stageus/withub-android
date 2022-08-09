@@ -1,126 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_color"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/textView13"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/background_color"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/point_color"
-        android:fontFamily="@font/nanum_square_round_bold"
-        android:gravity="center"
-        android:text="@string/my_info"
-        android:textColor="@color/white"
-        android:textSize="@dimen/fragment_title_text_size"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/my_info_img_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:elevation="10dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintWidth_percent="0.30">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/my_info_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_square_round_regular"
-        android:gravity="center"
-        android:text="코딩문딩"
-        android:padding="10dp"
-        android:elevation="5dp"
-        android:background="@drawable/main_round_view"
-        android:textColor="@color/text_color"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_img_view">
-
-    </TextView>
-
-    <LinearLayout
-        android:id="@+id/my_info_change_github_info"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@drawable/background_ripple_effect"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_nickname">
         <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:text="@string/github_info_change"
-            android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_weight="1"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/point_color"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:gravity="center"
+            android:text="@string/my_info"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fragment_title_text_size"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_nav_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/textView14"
+            android:id="@+id/my_info_img_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="10dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView14" />
-    </LinearLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintWidth_percent="0.30">
 
-    <LinearLayout
-        android:id="@+id/my_info_account"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_change_github_info">
+        </ImageView>
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/my_info_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="@string/account"
+            android:gravity="center"
+            android:text="코딩문딩"
+            android:padding="10dp"
+            android:elevation="5dp"
+            android:background="@drawable/main_round_view"
             android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_nav_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView17" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_info_img_view">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/my_info_change_github_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/background_ripple_effect"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_info_nickname">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="@string/github_info_change"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_nav_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/my_info_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_ripple_effect"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_info_change_github_info">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="@string/account"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_nav_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView17" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

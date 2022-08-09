@@ -22,14 +22,14 @@ class GithubInfoChangeRVAdapter (private val items: ArrayList<Repositories>,priv
             nameRepository?.text = "${items[position].owner} / ${items[position].name}"
 
             if (items.size == 0) {
-                changeBtn?.setBackgroundResource(R.drawable.disabled_button)
-                changeBtn?.isEnabled = false
+                changeBtn.setBackgroundResource(R.drawable.disabled_button)
+                changeBtn.isEnabled = false
             } else if (firstRepoSize) {
-                changeBtn?.setBackgroundResource(R.drawable.login_btn)
-                changeBtn?.isEnabled = true
+                changeBtn.setBackgroundResource(R.drawable.login_btn)
+                changeBtn.isEnabled = true
                  if (items.size >= 1) {
-                     changeBtn?.setBackgroundResource(R.drawable.login_btn)
-                     changeBtn?.isEnabled = true
+                     changeBtn.setBackgroundResource(R.drawable.login_btn)
+                     changeBtn.isEnabled = true
                  }
             }
 
@@ -40,8 +40,8 @@ class GithubInfoChangeRVAdapter (private val items: ArrayList<Repositories>,priv
                 notifyItemRemoved(position)
                 notifyDataSetChanged()
                 if (items.size == 0) {
-                    changeBtn?.setBackgroundResource(R.drawable.disabled_button)
-                    changeBtn?.isEnabled = false
+                    changeBtn.setBackgroundResource(R.drawable.disabled_button)
+                    changeBtn.isEnabled = false
                 }
             }
         }

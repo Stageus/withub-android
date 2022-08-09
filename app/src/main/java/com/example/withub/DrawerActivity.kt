@@ -3,11 +3,13 @@ package com.example.withub
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,11 +24,12 @@ class DrawerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDrawerBinding.inflate(layoutInflater)
-        val view = binding.root
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(view)
-
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_drawer
+        )
+        binding.activity = this@DrawerActivity
         val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
         val myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
         val handler = CoroutineExceptionHandler{_,exception->
@@ -102,17 +105,16 @@ class DrawerActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //닫기
-        binding.drawerExitButton.setOnClickListener {
-            navFriendRVAdapter.closeSwipeView()
-            this.finish()
-        }
-
-
     }
 
     override fun finish() {
         super.finish()
         overridePendingTransition(R.anim.hold,R.anim.rightroleft_animation)
+    }
+
+    //닫기
+    private fun closeDrawer(){
+        navFriendRVAdapter.closeSwipeView()
+        this.finish()
     }
 }

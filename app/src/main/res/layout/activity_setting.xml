@@ -1,213 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_color"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/background_color"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/point_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/back_btn_setting"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/point_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/back_btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/point_background_ripple_effect"
+                android:src="@drawable/ic_white_left_arrow" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="설정"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="27sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/option_help"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:padding="10dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/point_background_ripple_effect"
-            android:src="@drawable/ic_white_left_arrow" />
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/help"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:background="@drawable/ic_nav_right_arrow" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/option_app_rule"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:text="설정"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="27sp" />
-    </FrameLayout>
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option_help">
 
-    <LinearLayout
-        android:id="@+id/option_help"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/app_rule"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="0dp"
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_nav_right_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/option_user_info_rule"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/help"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option_app_rule">
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/user_info_rule"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
 
-            android:background="@drawable/ic_nav_right_arrow" />
-    </LinearLayout>
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_nav_right_arrow" />
+        </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/option_app_rule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_help">
-
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/option_app_version"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/app_rule"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option_user_info_rule">
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_nav_right_arrow" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/app_version"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
 
-    <LinearLayout
-        android:id="@+id/option_user_info_rule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_app_rule">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="@string/version"
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/nanum_square_round_regular" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/option_develop_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/user_info_rule"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option_app_version">
 
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_nav_right_arrow" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/develop_info"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
 
-    <LinearLayout
-        android:id="@+id/option_app_version"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_user_info_rule">
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_nav_right_arrow" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/option_opensource_licenses"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/app_version"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
+            android:background="@drawable/background_ripple_effect"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/option_develop_info">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="@string/version"
-            android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/nanum_square_round_regular"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0.71"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:gravity="start|center_vertical"
+                android:text="@string/opensource_licenses"
+                android:textColor="@color/text_color"
+                android:textSize="18sp" />
 
-    <LinearLayout
-        android:id="@+id/option_develop_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_app_version">
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_nav_right_arrow" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/develop_info"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_nav_right_arrow" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/option_opensource_licenses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_ripple_effect"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_develop_info">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.71"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:gravity="start|center_vertical"
-            android:text="@string/opensource_licenses"
-            android:textColor="@color/text_color"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_nav_right_arrow" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,362 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background_color">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/friend_activity_top_bar"
+    <data>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="@color/point_color"
-        android:padding="10dp"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <ImageButton
-            android:id="@+id/friend_activity_back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_white_left_arrow"
-            android:background="@drawable/point_background_ripple_effect"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/friend_activity_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/point_color"
             android:padding="10dp"
-            app:layout_constraintHorizontal_bias="0.02"
-            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_top_bar"
+            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/friend_activity_top_bar"
-            app:layout_constraintTop_toTopOf="@+id/friend_activity_top_bar"/>
-        <TextView
-            android:id="@+id/friend_activity_toolbar_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_ebold"
-            android:text="@string/neam"
-            android:textSize="@dimen/top_bar_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toTopOf="@id/friend_activity_friend_today_commit"
-            app:layout_constraintEnd_toEndOf="@+id/my_info_nickname"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:text="오늘"
-            android:textSize="@dimen/top_bar_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
-            app:layout_constraintEnd_toStartOf="@+id/friend_activity_friend_today_commit"
-            app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
+            <ImageButton
+                android:id="@+id/friend_activity_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_white_left_arrow"
+                android:background="@drawable/point_background_ripple_effect"
+                android:padding="10dp"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintBottom_toBottomOf="@+id/friend_activity_top_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/friend_activity_top_bar"
+                app:layout_constraintTop_toTopOf="@+id/friend_activity_top_bar" />
 
-        <com.robinhood.ticker.TickerView
-            android:id="@+id/friend_activity_friend_today_commit"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/friend_activity_toolbar_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_ebold"
+                android:text="@string/neam"
+                android:textSize="@dimen/top_bar_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/toolbar_text_color"
+                app:layout_constraintBottom_toTopOf="@id/friend_activity_friend_today_commit"
+                app:layout_constraintEnd_toEndOf="@+id/my_info_nickname"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="오늘"
+                android:textSize="@dimen/top_bar_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/toolbar_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
+                app:layout_constraintEnd_toStartOf="@+id/friend_activity_friend_today_commit"
+                app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
+
+            <com.robinhood.ticker.TickerView
+                android:id="@+id/friend_activity_friend_today_commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="0"
+                android:textColor="@color/commit_text_color"
+                android:textSize="@dimen/rolling_rolling_text_size"
+                app:ticker_defaultCharacterList="number"
+                app:ticker_animationDuration="2000"
+                app:ticker_defaultPreferredScrollingDirection="down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/friend_activity_toolbar_textview" />
+
+            <TextView
+                android:id="@+id/my_info_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="커밋"
+                android:textSize="@dimen/top_bar_text_size"
+                android:textStyle="bold"
+                android:textColor="@color/toolbar_text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
+                app:layout_constraintStart_toEndOf="@+id/friend_activity_friend_today_commit"
+                app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.example.withub.mainFragments.CustomSwipeToRefresh
+            android:id="@+id/friend_swipe_refresh_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:text="0"
-            android:textColor="@color/commit_text_color"
-            android:textSize="@dimen/rolling_rolling_text_size"
-            app:ticker_defaultCharacterList="number"
-            app:ticker_animationDuration="2000"
-            app:ticker_defaultPreferredScrollingDirection="down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/friend_activity_toolbar_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/friend_activity_top_bar">
 
-        <TextView
-            android:id="@+id/my_info_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="커밋"
-            android:textSize="@dimen/top_bar_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
-            app:layout_constraintStart_toEndOf="@+id/friend_activity_friend_today_commit"
-            app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.example.withub.mainFragments.CustomSwipeToRefresh
-        android:id="@+id/friend_swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friend_activity_top_bar">
-
-        <ScrollView
-            android:id="@+id/friend_activity_scroll"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scrollbars="none">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
+                android:id="@+id/friend_activity_scroll"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/friend_activity_graph_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:gravity="center"
-                    android:text="@string/graph_text"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/view_title_text_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/friend_activity_user_chart"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.02" />
-
-                <LinearLayout
-                    android:id="@+id/friend_activity_user_chart"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/main_round_view"
-                    android:elevation="10dp"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_graph_textview"
-                    app:layout_constraintWidth_percent="0.9">
-
-                    <HorizontalScrollView
-                        android:id="@+id/friend_horizontal_scroll"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fillViewport="true"
-                        android:paddingBottom="5dp"
-                        android:scrollbars="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-
-                            <com.github.mikephil.charting.charts.LineChart
-                                android:id="@+id/friend_line_chart"
-                                android:layout_width="1000dp"
-                                android:layout_height="match_parent" />
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/friend_activity_winner_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:gravity="center"
-                    android:text="@string/vs_commit_text"
-                    android:textColor="@color/text_color"
-                    android:textSize="15sp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_chart" />
+                android:layout_height="0dp"
+                android:scrollbars="none">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/main_round_view"
-                    android:elevation="10dp"
-                    android:paddingVertical="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_winner_text"
-                    app:layout_constraintWidth_percent="0.9">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/friend_activity_vs"
+                        android:id="@+id/friend_activity_graph_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_ebold"
-                        android:text="@string/VS"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:gravity="center"
+                        android:text="@string/graph_text"
                         android:textColor="@color/text_color"
-                        android:textSize="25dp"
+                        android:textSize="@dimen/view_title_text_size"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/friend_activity_friend_Image"
-                        app:layout_constraintStart_toEndOf="@+id/friend_activity_user_Image"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintStart_toStartOf="@+id/friend_activity_user_chart"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.02" />
 
-                    <ImageView
-                        android:id="@+id/friend_activity_left_crown"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_crown"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_Image"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_user_Image"
-                        app:layout_constraintTop_toTopOf="@+id/friend_activity_right_crown" />
-
-                    <ImageView
-                        android:id="@+id/friend_activity_right_crown"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_crown"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_Image"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_Image"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/friend_activity_user_Image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_dsadasd"
-                        app:layout_constraintEnd_toStartOf="@id/friend_activity_vs"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/friend_activity_left_crown" />
-
-                    <ImageView
-                        android:id="@+id/friend_activity_friend_Image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_dsadasd"
+                    <LinearLayout
+                        android:id="@+id/friend_activity_user_chart"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/main_round_view"
+                        android:elevation="10dp"
+                        app:layout_constraintDimensionRatio="1:0.5"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/friend_activity_vs"
-                        app:layout_constraintTop_toBottomOf="@id/friend_activity_right_crown" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_graph_textview"
+                        app:layout_constraintWidth_percent="0.9">
+
+                        <HorizontalScrollView
+                            android:id="@+id/friend_horizontal_scroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fillViewport="true"
+                            android:paddingBottom="5dp"
+                            android:scrollbars="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <com.github.mikephil.charting.charts.LineChart
+                                    android:id="@+id/friend_line_chart"
+                                    android:layout_width="1000dp"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/friend_activity_user_name"
+                        android:id="@+id/friend_activity_winner_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_bold"
-                        android:text="원해성"
+                        android:gravity="center"
+                        android:text="@string/vs_commit_text"
                         android:textColor="@color/text_color"
                         android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_Image"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_user_Image"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_Image" />
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_chart" />
 
-                    <TextView
-                        android:id="@+id/friend_activity_friend_name"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_bold"
-                        android:text="원해성"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_Image"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_Image"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_friend_Image" />
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/main_round_view"
+                        android:elevation="10dp"
+                        android:paddingVertical="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_winner_text"
+                        app:layout_constraintWidth_percent="0.9">
 
-                    <TextView
-                        android:id="@+id/friend_activity_user_month_commit_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/nanum_square_round_bold"
-                        android:text="@string/commit_count"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_name"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_user_name"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_name" />
-
-                    <TextView
-                        android:id="@+id/friend_activity_friend_month_commit_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/nanum_square_round_bold"
-                        android:text="@string/commit_count"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp"
-                        app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_name"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_name"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_friend_name" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:gravity="center"
-                    android:text="@string/contributions_graph"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/view_title_text_size"
-                    app:layout_constraintStart_toStartOf="@+id/friend_commit_grass"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-                <LinearLayout
-                    android:id="@+id/friend_commit_grass"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/main_round_view"
-                    android:elevation="10dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19"
-                    app:layout_constraintWidth_percent="0.9">
-
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/friend_activity_vs"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_ebold"
+                            android:text="@string/VS"
+                            android:textColor="@color/text_color"
+                            android:textSize="25dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/friend_activity_friend_Image"
+                            app:layout_constraintStart_toEndOf="@+id/friend_activity_user_Image"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/friend_activity_left_crown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_crown"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_Image"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_user_Image"
+                            app:layout_constraintTop_toTopOf="@+id/friend_activity_right_crown" />
+
+                        <ImageView
+                            android:id="@+id/friend_activity_right_crown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_crown"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_Image"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_Image"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/friend_activity_user_Image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/ic_dsadasd"
+                            app:layout_constraintEnd_toStartOf="@id/friend_activity_vs"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/friend_activity_left_crown" />
+
+                        <ImageView
+                            android:id="@+id/friend_activity_friend_Image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/ic_dsadasd"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/friend_activity_vs"
+                            app:layout_constraintTop_toBottomOf="@id/friend_activity_right_crown" />
+
+                        <TextView
+                            android:id="@+id/friend_activity_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="원해성"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_Image"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_user_Image"
+                            app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_Image" />
+
+                        <TextView
+                            android:id="@+id/friend_activity_friend_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="원해성"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_Image"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_Image"
+                            app:layout_constraintTop_toBottomOf="@+id/friend_activity_friend_Image" />
+
+                        <TextView
+                            android:id="@+id/friend_activity_user_month_commit_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="@string/commit_count"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_user_name"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_user_name"
+                            app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_name" />
+
+                        <TextView
+                            android:id="@+id/friend_activity_friend_month_commit_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nanum_square_round_bold"
+                            android:text="@string/commit_count"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp"
+                            app:layout_constraintEnd_toEndOf="@+id/friend_activity_friend_name"
+                            app:layout_constraintStart_toStartOf="@+id/friend_activity_friend_name"
+                            app:layout_constraintTop_toBottomOf="@+id/friend_activity_friend_name" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:gravity="center"
+                        android:text="@string/contributions_graph"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/view_title_text_size"
+                        app:layout_constraintStart_toStartOf="@+id/friend_commit_grass"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                    <LinearLayout
+                        android:id="@+id/friend_commit_grass"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:background="@drawable/main_round_view"
+                        android:elevation="10dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView19"
+                        app:layout_constraintWidth_percent="0.9">
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <ImageView
-                                android:id="@+id/friend_commit_grass_img_view"
-                                android:layout_width="750dp"
-                                android:layout_height="117dp"
-                                android:layout_margin="10dp" />
-                        </LinearLayout>
-                    </HorizontalScrollView>
-                </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/friend_activity_repository_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:gravity="center"
-                    android:text="@string/friend_repository_list"
-                    android:textColor="@color/text_color"
-                    android:textSize="@dimen/view_title_text_size"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="@+id/friend_activity_recycler_view"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_commit_grass" />
+                                <ImageView
+                                    android:id="@+id/friend_commit_grass_img_view"
+                                    android:layout_width="750dp"
+                                    android:layout_height="117dp"
+                                    android:layout_margin="10dp" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/friend_activity_recycler_view"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:paddingVertical="5dp"
-                    android:background="@drawable/main_round_view"
-                    android:elevation="10dp"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/recycler_view_item_friend_repo_list"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.5"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_repository_title"
-                    app:layout_constraintWidth_percent="0.9" />
+                    <TextView
+                        android:id="@+id/friend_activity_repository_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:gravity="center"
+                        android:text="@string/friend_repository_list"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/view_title_text_size"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@+id/friend_activity_recycler_view"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_commit_grass" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/friend_activity_recycler_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="30dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/main_round_view"
+                        android:elevation="10dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/recycler_view_item_friend_repo_list"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_repository_title"
+                        app:layout_constraintWidth_percent="0.9" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-    </com.example.withub.mainFragments.CustomSwipeToRefresh>
-</LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </com.example.withub.mainFragments.CustomSwipeToRefresh>
+    </LinearLayout>
+</layout>

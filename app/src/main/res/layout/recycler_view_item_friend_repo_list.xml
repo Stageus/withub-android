@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/friend_activity_repository_linear_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/main_view_ripple_effect"
-    android:orientation="horizontal"
-    android:weightSum="1">
-    <TextView
-        android:id="@+id/friend_activity_repository_textview"
-        android:layout_width="0dp"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/friend_activity_repository_linear_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_weight="0.9"
-        android:textColor="@color/text_color"
-        android:fontFamily="@font/nanum_square_round_regular"
-        android:textSize="15sp"
-        android:text="want8607/withub"/>
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="10dp"
-        android:layout_weight="0.1"
-        android:src="@drawable/ic_orange_right_arrow"/>
-</LinearLayout>
+        android:background="@drawable/main_view_ripple_effect"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/friend_activity_repository_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="0.9"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:textSize="15sp"
+            android:text="want8607/withub" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.1"
+            android:src="@drawable/ic_orange_right_arrow" />
+    </LinearLayout>
+</layout>

@@ -1,122 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/background_color"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        android:elevation="10dp"
-        android:background="@color/point_color">
-
-        <ImageButton
-            android:id="@+id/drawer_exit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/point_background_ripple_effect"
-            android:src="@drawable/ic_nav_close_btn"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
-
-        <ImageButton
-            android:id="@+id/drawer_option_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/point_background_ripple_effect"
-            android:src="@drawable/ic_nav_setting"
-            android:padding="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
-
-        <ImageView
-            android:id="@+id/drawer_header_img"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drawer_option_button"
-            app:layout_constraintHeight_percent="0.5"
-            />
-
-        <TextView
-            android:id="@+id/drawer_header_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_bold"
-            android:text="땅땅이"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drawer_header_img" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="activity"
+            type="com.example.withub.DrawerActivity" />
+    </data>
 
     <LinearLayout
         android:orientation="vertical"
-        android:id="@+id/drawer_body_constraint_layout"
+        android:background="@color/background_color"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.7">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/drawer_friend_list_constraint_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/drawer_constraint_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@android:color/transparent"
-            android:weightSum="1"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0.95"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="@string/friend_list"
-                android:textColor="@color/text_color"
-                android:textSize="20sp" />
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:elevation="10dp"
+            android:background="@color/point_color">
 
             <ImageButton
-                android:id="@+id/drawer_add_friend_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/drawer_exit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/point_background_ripple_effect"
+                android:src="@drawable/ic_nav_close_btn"
                 android:padding="5dp"
-                android:background="@drawable/nav_round_btn"
-                android:src="@drawable/ic_nav_plus_button" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/drawer_option_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/point_background_ripple_effect"
+                android:src="@drawable/ic_nav_setting"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/drawer_friend_recycler_View"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            <ImageView
+                android:id="@+id/drawer_header_img"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/drawer_option_button"
+                app:layout_constraintHeight_percent="0.5" />
+
+            <TextView
+                android:id="@+id/drawer_header_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_bold"
+                android:text="땅땅이"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/drawer_header_img" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/recycler_view_item_drawer_friend_list" />
+            android:id="@+id/drawer_body_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7">
+
+            <LinearLayout
+                android:id="@+id/drawer_friend_list_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@android:color/transparent"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.95"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="@string/friend_list"
+                    android:textColor="@color/text_color"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/drawer_add_friend_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:background="@drawable/nav_round_btn"
+                    android:src="@drawable/ic_nav_plus_button" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drawer_friend_recycler_View"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/recycler_view_item_drawer_friend_list" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

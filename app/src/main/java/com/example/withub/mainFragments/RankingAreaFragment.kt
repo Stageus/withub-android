@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,8 +17,7 @@ import kotlinx.coroutines.*
 
 class RankingAreaFragment : Fragment() {
 
-    private var _binding : FragmentRankingAreaBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentRankingAreaBinding
     lateinit var mainActivity: MainActivity
     private val commitApi: CommitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
     private val handler = CoroutineExceptionHandler{ _, exception->
@@ -27,7 +27,7 @@ class RankingAreaFragment : Fragment() {
     private var rankingDataList : MutableList<ArrayList<RankData>> = arrayListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentRankingAreaBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ranking_area,container,false)
         val view: View = binding.root
         mainActivity = activity as MainActivity
         return view
@@ -89,10 +89,5 @@ class RankingAreaFragment : Fragment() {
             rankingDataList.add(newMonthlyRankData)
             rankingDataList.add(newContinuousRankData)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

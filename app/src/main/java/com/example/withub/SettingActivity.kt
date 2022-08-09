@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.withub.databinding.ActivitySettingBinding
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
@@ -14,10 +15,11 @@ class SettingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySettingBinding.inflate(layoutInflater)
-        val view = binding.root
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(view)
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_setting
+        )
 
         // 뒤로가기
         binding.backBtnSetting.setOnClickListener{

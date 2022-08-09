@@ -13,6 +13,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -32,20 +33,18 @@ import kotlinx.coroutines.*
 
 class HomeFragment : Fragment(){
 
-    private var _binding : FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentHomeBinding
 
     lateinit var mainActivity: MainActivity
-
     lateinit var job : Job
     var myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
-    val handler = CoroutineExceptionHandler{_,exception->
+    private val handler = CoroutineExceptionHandler{ _, exception->
         Log.d("error",exception.toString())
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         val view = binding.root
         mainActivity = activity as MainActivity
         if (savedInstanceState !=null){
@@ -305,10 +304,5 @@ class HomeFragment : Fragment(){
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("bannerPosition",bannerPosition)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

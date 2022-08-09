@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -16,8 +17,7 @@ import kotlinx.coroutines.*
 
 class CommitFragment : Fragment() {
 
-    private var _binding : FragmentCommitBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentCommitBinding
 
     private var commitApi: CommitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
     lateinit var mainActivity : MainActivity
@@ -27,7 +27,7 @@ class CommitFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentCommitBinding.inflate(inflater,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_commit,container,false)
         val view  = binding.root
         mainActivity = activity as MainActivity
         return view
@@ -60,8 +60,4 @@ class CommitFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

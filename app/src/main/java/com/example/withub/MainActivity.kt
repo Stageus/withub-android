@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -14,7 +15,6 @@ import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.MyInfoFragment
 import com.example.withub.mainFragments.RankingFragment
 
-
 class MainActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -22,11 +22,13 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
         setTheme(R.style.Theme_WITHUB)
         window.statusBarColor = getColor(R.color.point_color)
-        setContentView(view)
+
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_main
+        )
 
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
@@ -81,7 +83,7 @@ class MainActivity: AppCompatActivity() {
             }
     }
 
-    fun setFragment(fragment: Fragment,tag: String){
+    private fun setFragment(fragment: Fragment, tag: String){
         val manager: FragmentManager = supportFragmentManager
         val ft: FragmentTransaction = manager.beginTransaction()
 
@@ -135,7 +137,7 @@ class MainActivity: AppCompatActivity() {
         ft.commitAllowingStateLoss()
     }
 
-    fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
         val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         return manager.getRunningServices(Integer.MAX_VALUE)
             .any { it.service.className == serviceClass.name }

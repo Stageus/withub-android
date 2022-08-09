@@ -19,9 +19,7 @@ class FriendRepoListRVAdapter(val context: Context,private var repoList: List<Re
         return FriendRepoListHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return repoList.size
-    }
+    override fun getItemCount(): Int = repoList.size
 
     override fun onBindViewHolder(holder: FriendRepoListRVAdapter.FriendRepoListHolder, position: Int) {
         holder.apply {

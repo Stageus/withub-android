@@ -1,437 +1,443 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardBackgroundColor="@color/main_view_color"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardView_content"
-            android:layout_width="match_parent"
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/main_view_color"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/cardView_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일간 커밋 횟수"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                android:fontFamily="@font/nanum_square_round_bold"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/friend_second_tropy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_tropy_second"
-                app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
-                app:layout_constraintEnd_toStartOf="@+id/friend_first_tropy"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
-
-            <ImageView
-                android:id="@+id/friend_first_tropy"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardView_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/ic_tropy_first"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView_title" />
+                android:layout_marginBottom="10dp">
 
-            <ImageView
-                android:id="@+id/friend_third_tropy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_tropy_third"
-                app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/friend_first_tropy"
-                app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
+                <TextView
+                    android:id="@+id/cardView_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일간 커밋 횟수"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/friend_name_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="문승재"
-                android:textAlignment="center"
-                android:layout_margin="5dp"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                android:lines="2"
-                app:layout_constraintWidth_percent="0.2"
-                app:layout_constraintEnd_toEndOf="@+id/friend_second_tropy"
-                app:layout_constraintStart_toStartOf="@+id/friend_second_tropy"
-                app:layout_constraintTop_toBottomOf="@+id/friend_second_tropy" />
+                <ImageView
+                    android:id="@+id/friend_second_tropy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_tropy_second"
+                    app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
+                    app:layout_constraintEnd_toStartOf="@+id/friend_first_tropy"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
 
-            <TextView
-                android:id="@+id/friend_name_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:textAlignment="center"
-                android:text="문재문재문재문재문재문재문재"
-                android:lines="2"
-                android:layout_margin="5dp"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                app:layout_constraintWidth_percent="0.2"
-                app:layout_constraintEnd_toEndOf="@+id/friend_third_tropy"
-                app:layout_constraintStart_toStartOf="@+id/friend_third_tropy"
-                app:layout_constraintTop_toBottomOf="@+id/friend_third_tropy" />
+                <ImageView
+                    android:id="@+id/friend_first_tropy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_tropy_first"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView_title" />
 
-            <TextView
-                android:id="@+id/friend_name_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="문승재쨰쨰쨰쨰쨰쨰쨰"
-                android:layout_margin="5dp"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                android:lines="2"
-                app:layout_constraintWidth_percent="0.2"
-                app:layout_constraintEnd_toEndOf="@+id/friend_first_tropy"
-                app:layout_constraintStart_toStartOf="@+id/friend_first_tropy"
-                app:layout_constraintTop_toBottomOf="@+id/friend_first_tropy" />
+                <ImageView
+                    android:id="@+id/friend_third_tropy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_tropy_third"
+                    app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/friend_first_tropy"
+                    app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
 
-            <TextView
-                android:id="@+id/friend_commit_num_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="2회"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_name_2"
-                app:layout_constraintStart_toStartOf="@+id/friend_name_2"
-                app:layout_constraintTop_toBottomOf="@+id/friend_name_2" />
+                <TextView
+                    android:id="@+id/friend_name_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="문승재"
+                    android:textAlignment="center"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    android:lines="2"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_second_tropy"
+                    app:layout_constraintStart_toStartOf="@+id/friend_second_tropy"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_second_tropy" />
 
-            <TextView
-                android:id="@+id/friend_commit_num_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="2회"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_name_3"
-                app:layout_constraintStart_toStartOf="@+id/friend_name_3"
-                app:layout_constraintTop_toBottomOf="@+id/friend_name_3" />
+                <TextView
+                    android:id="@+id/friend_name_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:textAlignment="center"
+                    android:text="문재문재문재문재문재문재문재"
+                    android:lines="2"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_third_tropy"
+                    app:layout_constraintStart_toStartOf="@+id/friend_third_tropy"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_third_tropy" />
 
-            <TextView
-                android:id="@+id/friend_commit_num_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:text="2회"
-                android:textColor="@color/text_color"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_name_1"
-                app:layout_constraintStart_toStartOf="@+id/friend_name_1"
-                app:layout_constraintTop_toBottomOf="@+id/friend_name_1" />
+                <TextView
+                    android:id="@+id/friend_name_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="문승재쨰쨰쨰쨰쨰쨰쨰"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    android:lines="2"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_first_tropy"
+                    app:layout_constraintStart_toStartOf="@+id/friend_first_tropy"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_first_tropy" />
 
-            <LinearLayout
-                android:id="@+id/expandable_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/friend_third_tropy"
-                app:layout_constraintStart_toStartOf="@+id/friend_second_tropy"
-                app:layout_constraintTop_toBottomOf="@+id/friend_commit_num_1">
+                <TextView
+                    android:id="@+id/friend_commit_num_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="2회"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_name_2"
+                    app:layout_constraintStart_toStartOf="@+id/friend_name_2"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_name_2" />
+
+                <TextView
+                    android:id="@+id/friend_commit_num_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="2회"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_name_3"
+                    app:layout_constraintStart_toStartOf="@+id/friend_name_3"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_name_3" />
+
+                <TextView
+                    android:id="@+id/friend_commit_num_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="2회"
+                    android:textColor="@color/text_color"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_name_1"
+                    app:layout_constraintStart_toStartOf="@+id/friend_name_1"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_name_1" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/expandable_layout"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/friend_third_tropy"
+                    app:layout_constraintStart_toStartOf="@+id/friend_second_tropy"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_commit_num_1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_4"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/friend_name_4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬랄랄랄랄랄랄랄"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_4"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
 
-                    <TextView
-                        android:id="@+id/friend_commit_num_4"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/friend_name_4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬랄랄랄랄랄랄랄"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_5"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textAlignment="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_6"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_7"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_8"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:textAlignment="center"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_9"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:textAlignment="center"
+                            android:layout_weight="1"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="@string/rank_10"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_name_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="이정찬"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/friend_commit_num_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="1회"
+                            android:textColor="@color/text_color"
+                            android:textSize="15sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_5"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:textAlignment="center"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_6"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_7"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_8"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_8"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:textAlignment="center"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_9"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:textAlignment="center"
-                        android:layout_weight="1"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/rank_10"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_name_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="이정찬"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/friend_commit_num_10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="1회"
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
