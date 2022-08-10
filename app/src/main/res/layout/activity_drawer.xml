@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.withub.DrawerActivity" />
+            type="com.example.withub.feature.drawer.DrawerActivity" />
     </data>
 
     <LinearLayout
