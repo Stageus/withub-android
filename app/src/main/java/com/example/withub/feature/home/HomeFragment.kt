@@ -40,10 +40,6 @@ class HomeFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var job: Job
 
-    companion object {
-        const val BannerNum = 4
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,6 +52,11 @@ class HomeFragment : Fragment() {
             this,
             ViewModelProvider.NewInstanceFactory()
         )[HomeViewModel::class.java]
+        binding.apply {
+            viewModel = homeViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+
         return view
     }
 
@@ -104,15 +105,15 @@ class HomeFragment : Fragment() {
 
         homeViewModel.myHomeData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.myTodayCommit.text = it.daily_commit.toString()//오늘 커밋
-                if (it.friend_avg == -1f) {
-                    binding.homeFragmentMyFriendCommitAvg.text = "친구추가해주세요"
-                } else {
-                    binding.homeFragmentMyFriendCommitAvg.text = it.friend_avg.toString()
-                }
-                //친구 커밋
-                binding.homeFragmentMyAreaCommitAvg.text =
-                    it.area_avg.toString()//지역 커밋
+//                binding.myTodayCommit.text = it.daily_commit.toString()//오늘 커밋
+//                if (it.friend_avg == -1f) {
+//                    binding.homeFragmentMyFriendCommitAvg.text = "친구추가해주세요"
+//                } else {
+//                    binding.homeFragmentMyFriendCommitAvg.text = it.friend_avg.toString()
+//                }
+//                //친구 커밋
+//                binding.homeFragmentMyAreaCommitAvg.text =
+//                    it.area_avg.toString()//지역 커밋
                 initLineChart(it.thirty_commit)//차트 x축
                 setDataToLineChart(it.thirty_commit)//차트 커밋수 조절
                 getGrassImg(it.committer) //잔디 불러오기
@@ -135,7 +136,7 @@ class HomeFragment : Fragment() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     homeViewModel.setBannerPosition(position)
-                    binding.currentBannerTextView.text = ((position % 4) + 1).toString()
+//                    binding.currentBannerTextView.text = ((position % 4) + 1).toString()
                     Log.d("position", position.toString())
                 }
 
@@ -157,7 +158,6 @@ class HomeFragment : Fragment() {
                 }
             })
         }
-        binding.totalBannerTextView.text = BannerNum.toString()
     }
 
     private fun initLineChart(dateList: List<MyThirtyCommits>) {

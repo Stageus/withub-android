@@ -49,6 +49,8 @@
     <string name="user_info_rule">개인정보 처리방침</string>
 
     <string name="area_select">지역선택</string>
-
     <string name="version">1.0.0</string>
+    <string name="today">오늘</string>
+    <string name="add_friend">친구를 추가해 주세요.</string>
+    <string name="convert_banner_count">(%s % 4)+1</string>
 </resources>

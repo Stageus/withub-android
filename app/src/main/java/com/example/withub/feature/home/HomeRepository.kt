@@ -29,6 +29,7 @@ class HomeRepository : ViewModel() {
         viewModelScope.launch(Dispatchers.IO + handler) {
             try {
                 _myHomeData.postValue(myDataApi.getMyData(MyApp.prefs.accountToken!!))
+                Log.d("homeApI호출", myHomeData.value.toString())
             } catch (e: java.lang.Exception) {
                 Log.d("homeAPI 에러", e.toString())
                 _myHomeData.postValue(null)

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.withub.feature.home.HomeViewModel" />
     </data>
 
     <LinearLayout
@@ -16,9 +18,9 @@
             android:id="@+id/home_top_view_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:background="@color/point_color"
             android:elevation="10dp"
             android:padding="10dp"
-            android:background="@color/point_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +47,9 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/nanum_square_round_bold"
-                android:text="오늘"
-                android:textSize="@dimen/fragment_title_text_size"
+                android:text="@string/today"
                 android:textColor="@color/toolbar_text_color"
+                android:textSize="@dimen/fragment_title_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/my_today_commit"
                 app:layout_constraintEnd_toStartOf="@+id/my_today_commit"
                 app:layout_constraintTop_toTopOf="@+id/my_today_commit" />
@@ -58,26 +60,26 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
                 android:textColor="@color/commit_text_color"
                 android:textSize="@dimen/rolling_rolling_text_size"
-                app:ticker_defaultCharacterList="number"
-                app:ticker_animationDuration="2000"
-                app:ticker_defaultPreferredScrollingDirection="down"
+                app:setTextInString="@{viewModel.myHomeData.daily_commit}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:ticker_animationDuration="2000"
+                app:ticker_defaultCharacterList="number"
+                app:ticker_defaultPreferredScrollingDirection="down" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:text="커밋"
-                android:textSize="@dimen/fragment_title_text_size"
-                android:textColor="@color/toolbar_text_color"
                 android:fontFamily="@font/nanum_square_round_bold"
+                android:text="커밋"
+                android:textColor="@color/toolbar_text_color"
+                android:textSize="@dimen/fragment_title_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/my_today_commit"
                 app:layout_constraintStart_toEndOf="@+id/my_today_commit"
                 app:layout_constraintTop_toTopOf="@+id/my_today_commit" />
@@ -178,15 +180,15 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:ellipsize="marquee"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:gravity="center"
-                            android:text="3.4"
-                            app:ticker_defaultCharacterList="number"
-                            app:ticker_animationDuration="2000"
-                            app:ticker_defaultPreferredScrollingDirection="down"
-                            android:ellipsize="marquee"
                             android:textColor="@color/text_color"
-                            android:textSize="45sp" />
+                            android:textSize="45sp"
+                            app:setFriendAvgCommit="@{viewModel.myHomeData.daily_commit}"
+                            app:ticker_animationDuration="2000"
+                            app:ticker_defaultCharacterList="number"
+                            app:ticker_defaultPreferredScrollingDirection="down" />
 
                     </LinearLayout>
 
@@ -221,16 +223,16 @@
                             android:id="@+id/home_fragment_my_area_commit_avg"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="5.1"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:gravity="center"
                             android:textAlignment="center"
-                            app:ticker_defaultCharacterList="number"
-                            app:ticker_animationDuration="2000"
-                            app:ticker_defaultPreferredScrollingDirection="down"
                             android:textColor="@color/text_color"
-                            android:textSize="45sp" />
+                            android:textSize="45sp"
+                            app:setAreaCommit="@{viewModel.myHomeData.area_avg}"
+                            app:ticker_animationDuration="2000"
+                            app:ticker_defaultCharacterList="number"
+                            app:ticker_defaultPreferredScrollingDirection="down" />
 
                     </LinearLayout>
 
@@ -321,9 +323,9 @@
                             android:id="@+id/current_banner_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1"
                             android:textColor="@color/white"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            app:setTextInString="@{viewModel.bannerPosition}" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -338,9 +340,9 @@
                             android:id="@+id/total_banner_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="15"
                             android:textColor="@color/white"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            app:setTextInString="@{viewModel.BannerNum}" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
