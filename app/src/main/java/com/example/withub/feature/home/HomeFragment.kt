@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
+import com.bumptech.glide.signature.MediaStoreSignature
+import com.bumptech.glide.signature.ObjectKey
 import com.example.withub.R
 import com.example.withub.data.network.MyThirtyCommits
 import com.example.withub.databinding.FragmentHomeBinding
@@ -28,6 +35,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import kotlinx.coroutines.Job
@@ -105,18 +113,10 @@ class HomeFragment : Fragment() {
 
         homeViewModel.myHomeData.observe(viewLifecycleOwner) {
             if (it != null) {
-//                binding.myTodayCommit.text = it.daily_commit.toString()//오늘 커밋
-//                if (it.friend_avg == -1f) {
-//                    binding.homeFragmentMyFriendCommitAvg.text = "친구추가해주세요"
-//                } else {
-//                    binding.homeFragmentMyFriendCommitAvg.text = it.friend_avg.toString()
-//                }
-//                //친구 커밋
-//                binding.homeFragmentMyAreaCommitAvg.text =
-//                    it.area_avg.toString()//지역 커밋
                 initLineChart(it.thirty_commit)//차트 x축
                 setDataToLineChart(it.thirty_commit)//차트 커밋수 조절
                 getGrassImg(it.committer) //잔디 불러오기
+                Log.d("commiter", it.committer)
             }
         }
     }
@@ -129,15 +129,12 @@ class HomeFragment : Fragment() {
                 urlList
             )
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            homeViewModel.setBannerPosition(0) // 초기 배너위치 설정
             setCurrentItem(homeViewModel.bannerPosition.value!!, false)
             registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    homeViewModel.setBannerPosition(position)
-//                    binding.currentBannerTextView.text = ((position % 4) + 1).toString()
-                    Log.d("position", position.toString())
+                    homeViewModel.bannerPosition.value = position
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
@@ -234,17 +231,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun getGrassImg(url: String) {
-        GlideToVectorYou.init()
-            .with(mainActivity)
-            .withListener(object : GlideToVectorYouListener {
-                override fun onLoadFailed() {
-                    Log.d("ff", "fail")
-                }
+        Glide.get(mainActivity).clearMemory()
+        val requestOptions = RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
 
-                override fun onResourceReady() {
-                }
-            })
-            .load("https://ghchart.rshah.org/219138/$url".toUri(), binding.mainCommitGrassImgView)
+        GlideApp.with(mainActivity)
+            .load("https://ghchart.rshah.org/219138/$url".toUri())
+            .apply(requestOptions)
+            .into(binding.mainCommitGrassImgView)
+//
+//        GlideToVectorYou.init()
+//            .with(mainActivity)
+//            .withListener(object : GlideToVectorYouListener {
+//                override fun onLoadFailed() {
+//                    Log.d("ff", "fail")
+//                }
+//
+//                override fun onResourceReady() {
+//                }
+//            })
+//            .load(, binding.mainCommitGrassImgView)
     }
 
     /** 설계 : 배너 자동스크롤이 Main스레드를 중단시켜서는 안되기 때문에 코루틴을 사용
@@ -310,6 +316,4 @@ class HomeFragment : Fragment() {
         super.onPause()
         job.cancel()
     }
-
-
 }

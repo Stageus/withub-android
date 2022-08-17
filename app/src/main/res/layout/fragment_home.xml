@@ -77,7 +77,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/nanum_square_round_bold"
-                android:text="커밋"
+                android:text="@string/commit"
                 android:textColor="@color/toolbar_text_color"
                 android:textSize="@dimen/fragment_title_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/my_today_commit"
@@ -185,7 +185,7 @@
                             android:gravity="center"
                             android:textColor="@color/text_color"
                             android:textSize="45sp"
-                            app:setFriendAvgCommit="@{viewModel.myHomeData.daily_commit}"
+                            app:setFriendAvgCommit="@{viewModel.myHomeData.friend_avg}"
                             app:ticker_animationDuration="2000"
                             app:ticker_defaultCharacterList="number"
                             app:ticker_defaultPreferredScrollingDirection="down" />
@@ -325,7 +325,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:textSize="15sp"
-                            app:setTextInString="@{viewModel.bannerPosition}" />
+                            app:setCurrentBannerNum="@{viewModel.bannerPosition}" />
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -19,17 +19,22 @@ import kotlinx.coroutines.*
 
 class RankingAreaFragment : Fragment() {
 
-    private lateinit var binding : FragmentRankingAreaBinding
+    private lateinit var binding: FragmentRankingAreaBinding
     lateinit var mainActivity: MainActivity
     private val commitApi: CommitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
-    private val handler = CoroutineExceptionHandler{ _, exception->
-        Log.d("error",exception.toString())
-        Log.d("error",exception.cause.toString())
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        Log.d("error", exception.toString())
+        Log.d("error", exception.cause.toString())
     }
-    private var rankingDataList : MutableList<ArrayList<RankData>> = arrayListOf()
+    private var rankingDataList: MutableList<ArrayList<RankData>> = arrayListOf()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ranking_area,container,false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_ranking_area, container, false)
         val view: View = binding.root
         mainActivity = activity as MainActivity
         return view
@@ -47,20 +52,20 @@ class RankingAreaFragment : Fragment() {
                 setHasFixedSize(true)
             }
         }
-        
+
         //스와이프 리프레시 설정
         binding.rankingAreaSwipeRefreshLayout.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch(handler) {
                 getRankingData()
                 expandableAdapter.refresh(rankingDataList)
                 binding.rankingAreaSwipeRefreshLayout.isRefreshing = false
-                Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+                Toast.makeText(mainActivity, "업데이트 완료", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     //랭킹데이터 가져오기
-    private suspend fun getRankingData(){
+    private suspend fun getRankingData() {
         withContext(CoroutineScope(Dispatchers.Default).coroutineContext + handler) {
             val getAreaRanking = withContext(Dispatchers.IO) {
                 commitApi.getAreaRank(MyApp.prefs.accountToken!!)

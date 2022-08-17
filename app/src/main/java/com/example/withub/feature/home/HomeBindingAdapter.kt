@@ -10,6 +10,11 @@ fun TextView.setTextInString(text: Int) {
     this.text = text.toString()
 }
 
+@BindingAdapter("setCurrentBannerNum")
+fun TextView.setCurrentBannerNum(bannerNum: Int){
+    this.text = ((bannerNum % 4) + 1).toString()
+}
+
 @BindingAdapter("setTextInString")
 fun TickerView.setTextInString(text: Int) {
     this.text = text.toString()
@@ -23,5 +28,5 @@ fun TickerView.setAreaCommit(text: Float) {
 @BindingAdapter("setFriendAvgCommit")
 fun TickerView.setFriendAvgCommit(avgCommit: Float) {
     this.text =
-        if (avgCommit != 1f) avgCommit.toString() else this.context.getString(R.string.add_friend)
+        if (avgCommit != -1f) avgCommit.toString() else this.context.getString(R.string.add_friend)
 }
