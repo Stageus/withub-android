@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:textColor="@color/commit_text_color"
                 android:textSize="@dimen/rolling_rolling_text_size"
-                app:setTextInString="@{viewModel.myHomeData.daily_commit}"
+                app:setTextInString="@{viewModel.homeData.daily_commit}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +185,7 @@
                             android:gravity="center"
                             android:textColor="@color/text_color"
                             android:textSize="45sp"
-                            app:setFriendAvgCommit="@{viewModel.myHomeData.friend_avg}"
+                            app:setFriendAvgCommit="@{viewModel.homeData.friend_avg}"
                             app:ticker_animationDuration="2000"
                             app:ticker_defaultCharacterList="number"
                             app:ticker_defaultPreferredScrollingDirection="down" />
@@ -229,7 +229,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/text_color"
                             android:textSize="45sp"
-                            app:setAreaCommit="@{viewModel.myHomeData.area_avg}"
+                            app:setAreaCommit="@{viewModel.homeData.area_avg}"
                             app:ticker_animationDuration="2000"
                             app:ticker_defaultCharacterList="number"
                             app:ticker_defaultPreferredScrollingDirection="down" />

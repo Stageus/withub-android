@@ -103,4 +103,7 @@ dependencies {
 
     //oss-licenses
     implementation "com.google.android.gms:play-services-oss-licenses:17.0.0"
+
+    //transitions EveryWhere
+    implementation "com.andkulikov:transitionseverywhere:2.0.0"
 }

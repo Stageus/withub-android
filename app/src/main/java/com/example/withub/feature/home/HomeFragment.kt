@@ -4,9 +4,7 @@ import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.content.Intent
-import android.graphics.drawable.PictureDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,13 +19,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
-import com.bumptech.glide.signature.MediaStoreSignature
-import com.bumptech.glide.signature.ObjectKey
 import com.example.withub.R
 import com.example.withub.data.network.MyThirtyCommits
 import com.example.withub.databinding.FragmentHomeBinding
-import com.example.withub.feature.base.MainActivity
 import com.example.withub.feature.drawer.DrawerActivity
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -36,8 +30,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 
@@ -45,7 +37,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeViewModel: HomeViewModel
-    lateinit var mainActivity: MainActivity
     lateinit var job: Job
 
     override fun onCreateView(
@@ -55,7 +46,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         val view = binding.root
-        mainActivity = activity as MainActivity
         homeViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
@@ -71,7 +61,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.callMyHomeData()
+        homeViewModel.callHomeDataApi()
 
         val imgList = listOf(
             R.drawable.view_pager1,
@@ -91,9 +81,9 @@ class HomeFragment : Fragment() {
 
         //Drawer 버튼 클릭 시 DrawerActivity 전환
         binding.navButton.setOnClickListener {
-            val intent = Intent(mainActivity, DrawerActivity::class.java)
+            val intent = Intent(requireActivity(), DrawerActivity::class.java)
             startActivity(intent)
-            mainActivity.overridePendingTransition(R.anim.lefttoright_animation, R.anim.hold)
+            requireActivity().overridePendingTransition(R.anim.lefttoright_animation, R.anim.hold)
         }
 
         //30일 커밋 차트
@@ -106,17 +96,16 @@ class HomeFragment : Fragment() {
 
         //swipeRefreshLayout
         binding.homeSwipeToRefresh.setOnRefreshListener {
-            homeViewModel.callMyHomeData()
+            homeViewModel.callHomeDataApi()
             binding.homeSwipeToRefresh.isRefreshing = false
-            Toast.makeText(mainActivity, "업데이트 완료", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), "업데이트 완료", Toast.LENGTH_SHORT).show()
         }
 
-        homeViewModel.myHomeData.observe(viewLifecycleOwner) {
+        homeViewModel.homeData.observe(viewLifecycleOwner) {
             if (it != null) {
                 initLineChart(it.thirty_commit)//차트 x축
                 setDataToLineChart(it.thirty_commit)//차트 커밋수 조절
                 getGrassImg(it.committer) //잔디 불러오기
-                Log.d("commiter", it.committer)
             }
         }
     }
@@ -231,11 +220,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun getGrassImg(url: String) {
-        Glide.get(mainActivity).clearMemory()
+        Glide.get(requireActivity()).clearMemory()
         val requestOptions = RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
 
-        GlideApp.with(mainActivity)
+        GlideApp.with(requireActivity())
             .load("https://ghchart.rshah.org/219138/$url".toUri())
             .apply(requestOptions)
             .into(binding.mainCommitGrassImgView)
@@ -254,10 +243,11 @@ class HomeFragment : Fragment() {
     }
 
     /** 설계 : 배너 자동스크롤이 Main스레드를 중단시켜서는 안되기 때문에 코루틴을 사용
-     *        또 사용자와 상호작용 할 수 있는 상태가 Resume이기 때문에 launchWhenResumed을 사용
+     *        사용자와 상호작용 할 수 있는 상태가 Resume이기 때문에 launchWhenResumed을 사용
+     *        프래그먼트가 멈출때 onPause에서 job을 취소해준다.
      *
      * 기능 : setCurrentItemWithDuration 확장함수에 매 4초마다 현재 배너 위치에 1을 더한 위치를 보내줌
-     * 매 0.5초마다 자동 스크롤됨*/
+     *       매 0.5초마다 자동 스크롤됨*/
     private fun bannerAutoScroll() {
         job = lifecycleScope.launchWhenResumed {
             delay(4000)

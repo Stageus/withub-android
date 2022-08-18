@@ -11,7 +11,7 @@ fun TextView.setTextInString(text: Int) {
 }
 
 @BindingAdapter("setCurrentBannerNum")
-fun TextView.setCurrentBannerNum(bannerNum: Int){
+fun TextView.setCurrentBannerNum(bannerNum: Int) {
     this.text = ((bannerNum % 4) + 1).toString()
 }
 

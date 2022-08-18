@@ -8,7 +8,7 @@ import com.example.withub.feature.base.MyApp
 /**
  * 모듈화를 위해 HomeRepository를 따로 ViewModel에서 분리
  */
-class HomeRepository() {
+class HomeRepository {
     private val myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
 
     /**
