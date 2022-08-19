@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.withub.data.network.AreaRankData
 import com.example.withub.data.network.RankData
+import com.orhanobut.logger.Logger
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,11 +21,11 @@ class RankingAreaViewModel : ViewModel() {
 
     private val rankingRepository = RankingRepository()
 
-    private val _areaRankData = MutableLiveData<MutableList<ArrayList<RankData>>>()
+    private var _areaRankData = MutableLiveData<MutableList<ArrayList<RankData>>>()
     val areaRankData: LiveData<MutableList<ArrayList<RankData>>>
         get() = _areaRankData
 
-    fun callAreaRankDataApi() {
+    fun setListOfAreaRankData() {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             val unRefinedAreaRankData: AreaRankData = rankingRepository.callAreaRankDataApi()
             withContext(Dispatchers.Default) {
@@ -51,8 +52,9 @@ class RankingAreaViewModel : ViewModel() {
                 rankingDataList.add(newWeeklyRankData)
                 rankingDataList.add(newMonthlyRankData)
                 rankingDataList.add(newContinuousRankData)
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     _areaRankData.value = rankingDataList
+                    Logger.d("랭킹정보 호출됨")
                 }
             }
         }

@@ -14,7 +14,6 @@ class HomeRepository {
     /**
      * Retrofit을 이용해 서버에서 내 최근 30일 간의 커밋을 가져온다.
      */
-    suspend fun callMyDataApi(): MyData {
-        return myDataApi.getMyData(MyApp.prefs.accountToken!!)
-    }
+    suspend fun callMyDataApi(): MyData = myDataApi.getMyData(MyApp.prefs.accountToken!!)
+
 }

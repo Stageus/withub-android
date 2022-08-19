@@ -8,7 +8,7 @@ import com.example.withub.R
 import com.example.withub.data.network.RankData
 import com.example.withub.databinding.RecyclerViewItemRankingBinding
 
-class ExpandableRVAdapter:
+class ExpandableRVAdapter :
     RecyclerView.Adapter<ExpandableRVAdapter.ExpandableHolder>() {
 
     private var rankingDataList: MutableList<ArrayList<RankData>> = mutableListOf()

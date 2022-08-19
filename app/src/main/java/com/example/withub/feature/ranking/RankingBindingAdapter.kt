@@ -4,9 +4,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.data.network.RankData
 
-
-@BindingAdapter("setItems")
-fun RecyclerView.setItems(items: MutableList<ArrayList<RankData>>?) {
+@BindingAdapter("setRankingItems")
+fun RecyclerView.setRankingItems(items: MutableList<ArrayList<RankData>>?) {
     val adapter: ExpandableRVAdapter
     if (this.adapter == null) {
         adapter = ExpandableRVAdapter()

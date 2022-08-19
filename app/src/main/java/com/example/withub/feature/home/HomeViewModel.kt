@@ -26,8 +26,8 @@ class HomeViewModel : ViewModel() {
         const val BannerNum = 4
     }
 
-    private val _homeData = MutableLiveData<MyData>()
-    val bannerPosition = MutableLiveData<Int>()
+    private var _homeData = MutableLiveData<MyData>()
+    var bannerPosition = MutableLiveData<Int>()
 
     val homeData: LiveData<MyData>
         get() = _homeData
@@ -40,7 +40,7 @@ class HomeViewModel : ViewModel() {
      *  viewModelScope를 사용하여 프래그먼트 생명주기에 독립적으로 HomeRepository를 통해 API에 접근 가능하다.
      *  그때 API호출은 IO에서 해주고 LiveData인 _myHomeData는 메인스레드에서 변경해준다.
      * */
-    fun callHomeDataApi() {
+    fun setMyData() {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             val calledHomeData = homeRepository.callMyDataApi()
             withContext(Dispatchers.Main) {

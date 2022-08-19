@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.callHomeDataApi()
+        homeViewModel.setMyData()
 
         val imgList = listOf(
             R.drawable.view_pager1,
@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
 
         //swipeRefreshLayout
         binding.homeSwipeToRefresh.setOnRefreshListener {
-            homeViewModel.callHomeDataApi()
+            homeViewModel.setMyData()
             binding.homeSwipeToRefresh.isRefreshing = false
             Toast.makeText(requireActivity(), "업데이트 완료", Toast.LENGTH_SHORT).show()
         }

@@ -20,11 +20,11 @@ class RankingFriendViewModel : ViewModel() {
 
     private val rankingRepository = RankingRepository()
 
-    private val _friendRankData = MutableLiveData<MutableList<ArrayList<RankData>>>()
+    private var _friendRankData = MutableLiveData<MutableList<ArrayList<RankData>>>()
     val friendRankData: LiveData<MutableList<ArrayList<RankData>>>
         get() = _friendRankData
 
-    fun callFriendRankDataApi() {
+    fun setListOfFriendRankData() {
         viewModelScope.launch(Dispatchers.IO + errorHandler) {
             val unRefinedFriendRankData: FriendRankData =
                 rankingRepository.callFriendRankDataApi()

@@ -9,12 +9,9 @@ import com.example.withub.feature.base.MyApp
 class RankingRepository {
     private val commitApi: CommitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
 
-    suspend fun callAreaRankDataApi(): AreaRankData {
-        return commitApi.getAreaRank(MyApp.prefs.accountToken!!)
-    }
+    suspend fun callAreaRankDataApi(): AreaRankData =
+        commitApi.getAreaRank(MyApp.prefs.accountToken!!)
 
-    suspend fun callFriendRankDataApi(): FriendRankData {
-        return commitApi.getFriendRank(MyApp.prefs.accountToken!!)
-    }
-
+    suspend fun callFriendRankDataApi(): FriendRankData =
+        commitApi.getFriendRank(MyApp.prefs.accountToken!!)
 }
